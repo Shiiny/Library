@@ -1,0 +1,23 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Admin:home }
+
+admin_index:
+    path:     /{param}
+    defaults: { _controller: AdminBundle:AdminContent:index }
+
+admin_add:
+    path:     /{param}/add
+    defaults: { _controller: AdminBundle:AdminContent:add }
+
+admin_edit:
+    path:     /{param}/edit/{id}
+    defaults: { _controller: AdminBundle:AdminContent:edit }
+    requirements:
+        id: \d+
+
+admin_delete:
+    path:     /{param}/{id}
+    defaults: { _controller: AdminBundle:AdminContent:delete }
+    requirements:
+        id: \d+

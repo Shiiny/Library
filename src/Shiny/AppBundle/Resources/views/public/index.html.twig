@@ -1,0 +1,30 @@
+{% extends "@App/public/base.html.twig" %}
+{% block app_img %}
+    <img id="front" src="{{ asset('/img/front.jpg') }}" alt="accueil">
+{% endblock %}
+
+{% block app_body %}
+    <h3>Nouveautés 2018</h3>
+
+    <div class="row">
+        {% for book in books %}
+        <div class="col-md-3">
+            <div class="card mb-3 box-shadow">
+                <figure class="card-img-top">
+                    <img src="{{ vich_uploader_asset(book, 'imageFile') }}" alt="{{ book.image.originalName }}">
+                </figure>
+                <div class="card-body">
+                    <h6>{{ book.author }}</h6>
+                    <p class="card-text">{{ book.content }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{{ path('app_single', {'id': book.id}) }}" class="btn btn-sm btn-outline-secondary">Voir</a>
+                        </div>
+                        <small class="text-muted">{{ book.date|date('d/m/Y') }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends ('@Admin/admin/admin.base.html.twig')%}
+
+{% block admin_content %}
+    <div class="container-fluid">
+        {% for label, messages in app.flashes() %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}" role="alert">
+                    <p class="message">Message flash : {{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ path('admin_homepage') }}">Tableau de bord</a>
+            </li>
+            {% block breadcrumb %}<li class="breadcrumb-item active">Accueil</li>{% endblock %}
+        </ol>
+        <!-- Example DataTables Card-->
+        {% block content %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> Derniers ajouts</div>
+                <div class="card-body">
+                    <!--<div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Age</th>
+                                <th>Start date</th>
+                                <th>Salary</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                                <td>$320,800</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>-->
+                </div>
+                <div class="card-footer small text-muted">--</div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

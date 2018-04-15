@@ -1,0 +1,7 @@
+services:
+    admin.form.book:
+        class: Shiny\AdminBundle\Form\BookType
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: form.type }

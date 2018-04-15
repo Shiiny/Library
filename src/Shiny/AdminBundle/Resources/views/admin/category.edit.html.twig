@@ -1,0 +1,10 @@
+{% extends "@Admin/admin/category.add.html.twig" %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item">
+        <a href="{{ path('admin_index', {'param': 'category'}) }}">Toutes les catégories</a>
+    </li>
+    <li class="breadcrumb-item active">Modifier une catégorie</li>
+{% endblock %}
+
+{% block content_title %}Modifier un Catégorie{% endblock %}

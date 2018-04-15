@@ -1,0 +1,42 @@
+<div class="well">
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.title, "Titre du cours") }}
+        {{ form_errors(form.title) }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.author, "Professeur du cours") }}
+        {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.content, "Détails du cours") }}
+        {{ form_errors(form.content) }}
+        {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.category, "Catégorie du cours") }}
+        {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.imageFile, "Couverture") }}
+        {{ form_widget(form.imageFile) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.pdfFile, "Pdf du cours") }}
+        {{ form_widget(form.pdfFile) }}
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Sauvegarder">
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+</div>

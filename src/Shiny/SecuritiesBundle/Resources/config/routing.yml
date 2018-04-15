@@ -1,0 +1,7 @@
+security_login:
+    path:     /login
+    defaults: { _controller: SecuritiesBundle:Security:login }
+
+security_logout:
+    path:     /logout
+    defaults: { _controller: SecuritiesBundle:Security:logout }

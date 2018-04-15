@@ -1,0 +1,13 @@
+app_homepage:
+    path:     /
+    defaults: { _controller: AppBundle:App:index }
+
+app_single:
+    path:     /{id}
+    defaults: { _controller: AppBundle:App:single }
+    requirements:
+        id: \d+
+
+app_handle_search:
+    path:     /search
+    defaults: { _controller: AppBundle:App:handleSearch }

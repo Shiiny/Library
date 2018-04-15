@@ -1,0 +1,12 @@
+
+{{ form_start(formSearch, {'action': path('app_handle_search'), 'method': 'POST'}) }}
+<div class="input-group search">
+    {{ form_widget(formSearch.search, {'attr': {'class': 'form-control', 'aria-label': "Rechercher", 'aria-describedby': "basic-addon"}}) }}
+
+    <div class="input-group-append">
+        <button type="submit" class="input-group-text" id="basic-addon">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+    {{ form_end(formSearch) }}
+</div>

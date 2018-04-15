@@ -1,0 +1,29 @@
+{% extends "@Admin/admin/admin.dashboard.html.twig" %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item">
+        <a href="{{ path('admin_index', {'param': 'category'}) }}">Toutes les catégories</a>
+    </li>
+    <li class="breadcrumb-item active">Ajouter une catégorie</li>
+{% endblock %}
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h2>{% block content_title %}Ajouter une Catégorie{% endblock %}</h2>
+        </div>
+        <div class="card-body">
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+            <div class="form-group">
+                {{ form_label(form.name, "Titre de la catégorie") }}
+                {{ form_errors(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Sauvegarder">
+
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+        <div class="card-footer small text-muted">---</div>
+    </div>
+{% endblock %}
+
