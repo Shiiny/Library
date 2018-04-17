@@ -1,96 +1,41 @@
-body{
-    background: url("../img/back.png");
-    font-size: 1em;
-    font-family: Lato;
-    color: #444;
-}
-a {
-    color: #558da4;
-}
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.contenu {
-    position: absolute;
-}
-.media{
-    margin-bottom: 2em;
-}
-.title_site{
-    padding: 0 1rem;
-    font-size: 3.5rem;
-    font-weight: 400;
-    line-height: 1.2;
-    color: #fff;
-}
-.search input.form-control {
-    line-height: 3;
-}
-button#basic-addon {
-    padding: 0 1rem;
-    font-size: 1.5rem;
+body {
+    padding-top: 90px;
+    font-weight:100;
 }
 
-.input-group-append:hover button {
-    background-color: #444;
-    color: #ececec;
+@-webkit-keyframes HeroBG {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }
 
-.midbar{
-    margin-bottom: 2em;
-}
-nav.site-header.sticky-top.py-1 {
-    background-color: #e9e9e9;
-}
-
-a.py-2.d-none.d-md-inline-block {
-    line-height: 55px;
-}
-#front, #front_blue{
-    width: 100vw;
+@keyframes HeroBG {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }
 
-#front {
-    height: 100vh;
-}
 
-/*---------------- Index -----------------*/
-.card-img-top {
-    height: 175px;
-    overflow: hidden;
-    border-bottom: .5px solid #444;
-    margin-bottom: 0;
-}
-
-.card-img-top img {
-    width: 100%;
-}
-
-/*-------------- Footer --------------*/
-footer {
-    background: #28586f;
-    color: #fff;
-    padding: 3rem 0;
-}
-.logo-footer{
-    padding-bottom: 2em;
-}
-
-/*-------------- Login / Register --------------*/
-.sign {
-    margin-top: 5em;
-}
 .panel {
     border-radius: 5px;
 }
 label {
-    /* font-weight: 300; */
+    font-weight: 300;
 }
 .panel-login {
     border: none;
-    background-color: #fff;
     -webkit-box-shadow: 0px 0px 49px 14px rgba(188,190,194,0.39);
     -moz-box-shadow: 0px 0px 49px 14px rgba(188,190,194,0.39);
     box-shadow: 0px 0px 49px 14px rgba(188,190,194,0.39);
@@ -151,9 +96,9 @@ label {
     padding: 0;
 }
 .panel-login h2{
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 300;
     margin: 30px;
-    text-transform: uppercase;
 }
 .panel-login>.panel-heading {
     color: #848c9d;
@@ -172,26 +117,32 @@ label {
 }
 .panel-login>.panel-heading .login {
     padding: 20px 30px;
-    border-bottom-left-radius: 5px;
+    border-bottom-leftt-radius: 5px;
 }
 .panel-login>.panel-heading .register {
     padding: 20px 30px;
+    background: #2d3b55;
     border-bottom-right-radius: 5px;
 }
 .panel-login>.panel-heading a{
     text-decoration: none;
     color: #666;
-    text-align: center;
     font-weight: 300;
     font-size: 16px;
     -webkit-transition: all 0.1s linear;
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
-a.active div {
-    background-color: #28586f;
+.panel-login>.panel-heading a#register-form-link {
     color: #fff;
+    width: 100%;
+    text-align: right;
 }
+.panel-login>.panel-heading a#login-form-link {
+    width: 100%;
+    text-align: left;
+}
+
 .panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
     height: 45px;
     border: 0;
@@ -216,7 +167,7 @@ a.active div {
 .btn-login {
     background-color: #E8E9EC;
     outline: none;
-    color: #28586f;
+    color: #2D3B55;
     font-size: 14px;
     height: auto;
     font-weight: normal;
@@ -225,6 +176,11 @@ a.active div {
     border: none;
     border-radius: 0px;
     box-shadow: none;
+}
+.btn-login:hover,
+.btn-login:focus {
+    color: #fff;
+    background-color: #2D3B55;
 }
 .forgot-password {
     text-decoration: underline;
@@ -239,7 +195,7 @@ a.active div {
 .btn-register {
     background-color: #E8E9EC;
     outline: none;
-    color: #28586f;
+    color: #2D3B55;
     font-size: 14px;
     height: auto;
     font-weight: normal;
@@ -249,10 +205,8 @@ a.active div {
     border-radius: 0px;
     box-shadow: none;
 }
-.btn-login:hover,
-.btn-login:focus,
 .btn-register:hover,
 .btn-register:focus {
     color: #fff;
-    background-color: #28586f;
+    background-color: #2D3B55;
 }

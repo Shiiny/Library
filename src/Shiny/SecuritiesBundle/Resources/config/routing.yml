@@ -5,3 +5,7 @@ security_login:
 security_logout:
     path:     /logout
     defaults: { _controller: SecuritiesBundle:Security:logout }
+
+user_register:
+    path:     /register
+    defaults: { _controller: SecuritiesBundle:Security:register }

@@ -2,15 +2,26 @@
 
 namespace Shiny\AdminBundle\Controller;
 
-use Shiny\AppBundle\Entity\Book;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Security("is_granted('ROLE_ADMIN')")
+ */
 class AdminController extends Controller
 {
     public function homeAction()
     {
         return $this->render('@Admin/admin/admin.dashboard.html.twig');
+    }
+
+    /**
+     * @Route("/admin/test)
+     */
+    public function adminAction()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
     }
 }

@@ -17,117 +17,29 @@
                     <a class="py-2" href="{{ path('app_homepage') }}">
                         <img id="logo" src="{{ asset('/img/Logo.png') }}" alt="Logo Collège Sévigné">
                     </a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="py-2 d-none d-md-inline-block" href="{{ path('admin_homepage') }}">Admin</a>
+                    {% endif %}
                     {% if is_granted('ROLE_USER') %}
-                         <a class="py-2 d-none d-md-inline-block" href="{{ path('security_logout') }}">Déconnexion</a>
+                         <a class="py-2 d-none d-md-inline-block" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     {% else %}
-                        <a class="py-2 d-none d-md-inline-block" href="{{ path('security_login') }}">Connexion</a>
+                         <a class="py-2 d-none d-md-inline-block" href="{{ path('security_login') }}"><i class="fas fa-sign-in-alt"></i> Connexion</a>
                     {% endif %}
                 </div>
             </nav>
         </header>
 
         {% block body %}
-        <div class="alert alert-warning" style="text-align: center; font-size: 24px;" role="alert">
-            Attention ! Cette année, la procédure d'inscription se modernise.
-        </div>
-        <div class="jumbotron" style="text-align: center;">
-            <h1 style="color: #bfae94; font-size: 63px;">Ouverture des inscriptions le vendredi 13 avril 2018</h1>
-        </div>
-
-            <h3>Vous êtes prêt-e ?</h3>
-
-        <div id="accordion" class="panel-group" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div id="stepOne" class="panel-heading" role="tab">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <h4 class="panel-title">1ère étape : préinscrivez-vous</h4>
-                    </a>
-                </div>
-
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="stepOne">
-                    <div class="panel-body">
-                        <p>Effectuez une préinscription en ligne à partir du formulaire ci-dessous (en ligne vendredi 13 avril 2018) :</p>
-                        <ul class="list-bullet-square">
-                            <li>vous indiquerez vos coordonnées postales</li>
-                            <li>vos choix de formation</li>
-                            <li>vos coordonnées bancaires</li>
-                        </ul>
-                        <p>A ce stade, vous savez combien coûte votre formation mais aucun paiement n'a été effectué.</p>
-                        <div class="alert alert-warning" style="font-size: 1.4em" role="alert">
-                            Attention ! Pour que l'inscription soit validée et que vous obteniez vos accès à votre espace privé, il faudra ensuite effectuer les deux opérations ci-dessous.
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><span class="widget-btn"><a href="#">Formulaire de préinscription 2018-2019</a></span>
-                                <p><i style="color: #f36a10; text-align: center">bientôt en ligne</i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div id="stepTwo" class="panel-heading" role="tab">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                        <h4 class="panel-title">2ème étape : virement de votre acompte</h4>
-                    </a>
-                </div>
-
-                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="stepTwo">
-                    <div class="panel-body">
-                        <p>En utilisant le RIB du Collège Sévigné, vous verserez après votre préinscription un acompte obligatoire de 500 euros <em>(750 euros si vous avez choisi l'option cours imprimés avec envoi postal)</em> par virement bancaire dans les plus brefs délais.</p>
-                        <div class="alert alert-success" style="font-size: 1.4em" role="alert">
-                            Si vous vous inscrivez :<br/>
-                                - à un stage<br/>
-                                - à la formation Ecole du Louvre<br/>
-                                - à une certification complémentaire<br/>
-                            <strong>votre inscription sera validée à ce stade.</strong>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"><span class="widget-btn"><a href="http://www.collegesevigne.fr/content/uploads/sites/2/2018/04/rib-college-sevigne-agrégation_1.pdf" target="_blank" rel="noopener">RIB Collège Sévigné</a></span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div id="stepTree" class="panel-heading" role="tab">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTree" aria-expanded="true" aria-controls="collapseTree">
-                            <h4 class="panel-title">3ème étape : le paiement de vos mensualités à partir de septembre</h4>
-                        </a>
-                    </div>
-
-                <div id="collapseTree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="stepTree">
-                        <div class="panel-body">
-                            <p>Pour le paiement de vos mensualités à partir de septembre, retournez le formulaire SEPA complété + votre RIB  par :</p>
-                            <div class="row">
-                                <div class="alert alert-info col-sm-5" style="font-size: 1.4em; text-align: center">
-                                    <a href="mailto:inscription-sup@collegesevigne.fr"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> inscription.sup@collegesevigne.fr</a>
-                                </div>
-                                <p>ou</p>
-                                <div class="alert alert-info col-sm-5" style="font-size: 1.4em; text-align: center"><strong>Collège Sévigné</strong><br/>
-                                    39 rue Henri Barbusse - 75005 PARIS
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4"><span class="widget-btn"><a href="http://www.collegesevigne.fr/content/uploads/sites/2/2018/03/Formulaire-SEPA.pdf" target="_blank" rel="noopener">Formulaire SEPA</a></span></div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-        <div class="alert alert-danger" style="font-size: 1.4em; text-align: center" role="alert">
-            VOTRE INSCRIPTION NE SERA VALIDEE QUE LORSQUE NOUS AURONS RECU VOTRE ACOMPTE ET VOTRE FORMULAIRE SEPA CONTENANT VOTRE RIB.
-        </div>
-            <p><em>Si vous souhaitez une carte d'étudiant avec photographie, envoyez votre demande accompagnée d'une photographie :
-                <a href="mailto:a.oury@collegesevigne.fr">carte étudiant</a></em></p>
-
-            {% endblock %}
+        {% endblock %}
 
         {% block javascripts %}
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script
+                    src="https://code.jquery.com/jquery-3.3.1.min.js"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                    crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            <script src="/js/app.js"></script>
+            <script src="{{ asset('/js/app.js') }}"></script>
         {% endblock %}
     </body>
 </html>

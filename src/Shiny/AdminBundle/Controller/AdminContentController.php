@@ -3,10 +3,15 @@
 namespace Shiny\AdminBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class AdminContentController
+ * @Security("is_granted('ROLE_ADMIN')")
+ */
 class AdminContentController extends Controller
 {
 
@@ -56,6 +61,8 @@ class AdminContentController extends Controller
         $entity = $em->getRepository('AppBundle:'.$entityName)->find($id);
 
         $form = $this->createForm('Shiny\AdminBundle\Form\\'.$entityName.'Type', $entity);
+        $formCategory = $this->createForm('Shiny\AdminBundle\Form\CategoryType');
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -64,7 +71,10 @@ class AdminContentController extends Controller
             $this->addFlash('notice', "L'élément a été modifié.");
             return $this->redirectToRoute('admin_index', array('param' => $param));
         }
-        return $this->render('@Admin/admin/'.$param.'.edit.html.twig', array('form' => $form->createView()));
+        return $this->render('@Admin/admin/'.$param.'.edit.html.twig', array(
+            'form' => $form->createView(),
+            'formCategory' => $formCategory->createView()
+        ));
 
     }
 

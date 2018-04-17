@@ -4,10 +4,15 @@ security:
     encoders:
         Shiny\SecuritiesBundle\Entity\User: bcrypt
 
+    role_hierarchy: #?_switch_user=_exit
+            ROLE_ADMIN:       [ROLE_CONTRIBUTEUR, ROLE_MODERATEUR]
+            ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        users:
-            entity: { class: Shiny\SecuritiesBundle\Entity\User, property: username }
+        users_provider:
+            entity:
+                class: SecuritiesBundle:User
+                property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -17,17 +22,15 @@ security:
 
         main:
             anonymous: ~
+            http_basic: ~
+            provider: users_provider
             guard:
                 authenticators:
                     - security.login_form_authenticator
 
             logout:
                 path: /logout
-            # activate different ways to authenticate
+            switch_user: ~
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            #form_login:
-                #login_path: login
-                #check_path: login
+    access_control:
+        - { path: ^/admin/test, roles: ROLE_ADMIN }

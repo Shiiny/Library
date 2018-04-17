@@ -21,3 +21,7 @@ admin_delete:
     defaults: { _controller: AdminBundle:AdminContent:delete }
     requirements:
         id: \d+
+
+admin_user_index:
+    path:     /users/
+    defaults: { _controller: AdminBundle:AdminUser:indexUser }

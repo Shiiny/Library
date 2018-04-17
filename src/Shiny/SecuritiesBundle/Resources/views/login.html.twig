@@ -1,20 +1,24 @@
-{% extends '@App/public/base.html.twig'%}
+{% extends '@Securities/base.html.twig'%}
+{% block login_check %}
 
-{% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1>Login!</h1>
-                {% if error %}
-                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
+    <h2>CONNEXION</h2>
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    {{ form_start(form) }}
+        {{ form_row(form._username) }}
 
-                {{ form_start(form) }}
-                    {{ form_row(form._username) }}
-                    {{ form_row(form._password) }}
-                    <button type="submit" class="btn btn-success">Login <span class="fa fa-lock"></span></button>
-                {{ form_end(form) }}
-            </div>
-        </div>
+        {{ form_row(form._password) }}
+
+    <div class="col-xs-6 form-group pull-left checkbox">
+        <input id="checkbox1" type="checkbox" name="remember">
+        <label for="checkbox1">Remember Me</label>
     </div>
+    <div class="col-xs-6 form-group pull-right">
+        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Se connecter">
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+{% block actif_login %}
+    class="active"
 {% endblock %}

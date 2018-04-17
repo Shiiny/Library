@@ -1,10 +1,10 @@
 <?php
 
-namespace Shiny\SecuritiesBundle\Doctrine;
+namespace Shiny\AppBundle\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Shiny\SecuritiesBundle\Entity\User;
+use Shiny\AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 
 class HashPasswordListener implements EventSubscriber

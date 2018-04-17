@@ -134,45 +134,60 @@
     </column>
     <column id="34" parent="8" name="username">
       <Position>2</Position>
-      <DataType>VARCHAR(255)|0s</DataType>
+      <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="35" parent="8" name="email">
+    <column id="35" parent="8" name="password">
       <Position>3</Position>
       <DataType>VARCHAR(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="36" parent="8" name="password">
+    <column id="36" parent="8" name="email">
       <Position>4</Position>
       <DataType>VARCHAR(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="37" parent="8" name="UNIQ_2B5C1C24E7927C74">
+    <column id="37" parent="8" name="roles">
+      <Position>5</Position>
+      <DataType>CLOB|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="8" name="is_active">
+      <Position>6</Position>
+      <DataType>BOOLEAN|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="39" parent="8" name="UNIQ_2B5C1C24F85E0677">
+      <ColNames>username</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="40" parent="8" name="UNIQ_2B5C1C24E7927C74">
       <ColNames>email</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="38" parent="8">
+    <key id="41" parent="8">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="39" parent="9" name="type">
+    <column id="42" parent="9" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="40" parent="9" name="name">
+    <column id="43" parent="9" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="41" parent="9" name="tbl_name">
+    <column id="44" parent="9" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="42" parent="9" name="rootpage">
+    <column id="45" parent="9" name="rootpage">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="43" parent="9" name="sql">
+    <column id="46" parent="9" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>

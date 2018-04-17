@@ -1,0 +1,55 @@
+{% extends '@Admin/admin/admin.dashboard.html.twig' %}
+
+{% block breadcrumb %}<li class="breadcrumb-item active">Utilisateurs</li>{% endblock %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <span><i class="fa fa-table"></i> Utilisateurs</span>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    <a href="" class="btn btn-sm btn-outline-secondary">Ajouter</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ result.id }}</td>
+                            <td>{{ result.username }}</a></td>
+                            <td>{{ result.email }}</td>
+                            <td>{{ result.roles|format_args() }}</td>
+                            <td>
+                                <div class="btn-group mr-2">
+                                    <a href="" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="form[_token]" value="{{ csrf_token('form') }}" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">---</div>
+    </div>
+
+    <p>Welcome {{ app.user ? app.user.email : 'Aquanauts' }}</p>
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+{% endblock %}

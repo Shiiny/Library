@@ -3,7 +3,6 @@ $(document).ready(function() {
     //Ajout option nouvelle catégorie
     var list = $('#appbundle_book_category');
     $(list).append( '<option id="newCategory">Nouvelle catégorie</option>' );
-    console.log(list);
 
     var newCategory = $('#newCategory');
 
@@ -13,7 +12,7 @@ $(document).ready(function() {
             //Modale avec input pour saisir le titre de la nouvelle catégorie
             $('#addCategory').modal('show');
 
-            $('#addNewCategory').on('click', function(){
+            $('#addNewCategory').click(function(){
                 var newCategoryTitle = $('#appbundle_category_name').val();
                 console.log(newCategoryTitle);
                 newCategoryTitle = newCategoryTitle.charAt(0).toUpperCase() + newCategoryTitle.substring(1);
