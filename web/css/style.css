@@ -78,6 +78,14 @@ footer {
     padding-bottom: 2em;
 }
 
+/*-------------- Single Page --------------*/
+div#nav-tabContent {
+    border: 1px solid #dee2e6;
+    padding: .5em 1em;
+    background-color: #fff;
+    border-top: none;
+}
+
 /*-------------- Login / Register --------------*/
 .sign {
     margin-top: 5em;

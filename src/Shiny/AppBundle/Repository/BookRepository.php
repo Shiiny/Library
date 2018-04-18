@@ -10,12 +10,32 @@ namespace Shiny\AppBundle\Repository;
  */
 class BookRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findBySearch($variable)
+    public function getBooksWithCategorie()
     {
-        $query = $this
-            ->createQueryBuilder('b')
-            ->where('b.title LIKE :variable OR b.author LIKE :variable OR b.content LIKE :variable OR b.date <= :variable')
-            ->setParameter('variable', '%'.$variable.'%')
+        $query = $this->createQueryBuilder('b');
+        $query
+            ->leftJoin('b.category', 'c')
+            ->addSelect('c');
+
+        return $query;
+    }
+
+    public function getBooksComplet()
+    {
+        $query = $this->getBooksWithCategorie()
+            ->leftJoin('b.author', 'a')
+            ->addSelect('a')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+    public function getSearch($search)
+    {
+        $query = $this->getBooksWithCategorie()
+            ->leftJoin('b.author', 'a')
+            ->addSelect('a')
+            ->where('b.title LIKE :variable OR c.name LIKE :variable OR a.firstName LIKE :variable OR a.lastName LIKE :variable OR b.content LIKE :variable OR b.date <= :variable')
+            ->setParameter('variable', '%'.$search.'%')
             ->getQuery();
 
         return $query->getResult();

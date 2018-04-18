@@ -14,13 +14,14 @@ class AppController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getRepository(Book::class);
-        $books = $em->findAll();
+        $books = $em->getBooksComplet();
         return $this->render('@App/public/index.html.twig', array('books' => $books));
     }
 
-    public function singleAction($id)
+    public function singleAction(Book $book)
     {
-        return $this->render('@App/public/single.html.twig');
+        $em = $this->getDoctrine()->getRepository(Book::class);
+        return $this->render('@App/public/single.html.twig', array('book' => $book));
     }
 
     public function searchBarAction()
@@ -34,7 +35,7 @@ class AppController extends Controller
         $form = $request->request->get('appbundle_search');
         $search = $form['search'];
 
-        $req = $this->getDoctrine()->getRepository(Book::class)->findBySearch($search);
+        $req = $this->getDoctrine()->getRepository(Book::class)->getSearch($search);
 
         if (null === $req) {
             throw new NotFoundHttpException("Aucun résultat");

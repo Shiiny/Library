@@ -5,6 +5,7 @@ namespace Shiny\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -41,9 +42,8 @@ class Book
     private $content;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Shiny\AppBundle\Entity\Prof", inversedBy="books", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
@@ -55,7 +55,7 @@ class Book
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Shiny\AppBundle\Entity\Category", inversedBy="books")
+     * @ORM\ManyToOne(targetEntity="Shiny\AppBundle\Entity\Category", inversedBy="books", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
@@ -63,6 +63,11 @@ class Book
     /**
      * @Vich\UploadableField(mapping="product_images", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName")
      * @var File
+     * @Assert\Image(
+     *     maxSize = "5120k",
+     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/tiff", "image/bmp"},
+     *     mimeTypesMessage = "Merci d'uploader une Image de type {{ type }}"
+     *)
      */
     private $imageFile;
 
@@ -75,6 +80,11 @@ class Book
     /**
      * @Vich\UploadableField(mapping="product_pdfs", fileNameProperty="pdf.name", size="pdf.size", mimeType="pdf.mimeType", originalName="pdf.originalName")
      * @var File
+     * @Assert\File(
+     *     maxSize = "5120k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Merci d'uploader un PDF"
+     *)
      */
     private $pdfFile;
 
@@ -149,30 +159,6 @@ class Book
     public function getContent()
     {
         return $this->content;
-    }
-
-    /**
-     * Set author
-     *
-     * @param string $author
-     *
-     * @return Book
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
     }
 
     /**
@@ -291,5 +277,22 @@ class Book
     public function setPdf(EmbeddedFile $pdf)
     {
         $this->pdf = $pdf;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param \Shiny\AppBundle\Entity\Prof $author
+     */
+    public function setAuthor(Prof $author)
+    {
+        $this->author = $author;
+        return $this;
     }
 }

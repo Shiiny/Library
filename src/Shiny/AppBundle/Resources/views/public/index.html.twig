@@ -14,7 +14,7 @@
                     <img src="{{ vich_uploader_asset(book, 'imageFile') }}" alt="{{ book.image.originalName }}">
                 </figure>
                 <div class="card-body">
-                    <h6>{{ book.author }}</h6>
+                    <h6>{{ book.author.firstName }} {{ book.author.lastName }}</h6>
                     <p class="card-text">{{ book.content }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">

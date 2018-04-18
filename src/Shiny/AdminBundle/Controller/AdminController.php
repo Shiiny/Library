@@ -16,12 +16,4 @@ class AdminController extends Controller
     {
         return $this->render('@Admin/admin/admin.dashboard.html.twig');
     }
-
-    /**
-     * @Route("/admin/test)
-     */
-    public function adminAction()
-    {
-        return new Response('<html><body>Admin page!</body></html>');
-    }
 }

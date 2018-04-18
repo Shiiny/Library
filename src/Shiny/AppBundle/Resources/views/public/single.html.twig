@@ -1,25 +1,71 @@
 {% extends "@App/public/base.html.twig" %}
 
 {% block app_body %}
-    <h3>Single</h3>
+    <div class="container">
+        <div class="row">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card mb-12 box-shadow">
-                <figure class="card-img-top">
-                    <img class="" src="{{ asset('/img/test.jpg') }}" alt="Card image cap">
-                </figure>
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-muted">9 mins</small>
+            <div class="col-md-4">
+                <img class="img-fluid" src="{{ vich_uploader_asset(book, 'imageFile') }}" alt="{{ book.image.originalName }}">
+            </div>
+
+            <div class="col-md-8">
+                <h1 class="my-3">{{ book.title }}</h1>
+                <h3 class="my-3">{{ book.category }}</h3>
+                <div>
+                    <ul>
+                        <li><span class="">Cours :</span> Prof</li>
+                        <li><span class="">Année :</span>  {{ book.date|date('Y') }}</li>
+                    </ul>
+                </div>
+                <p>{{ book.content }}</p>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-desc-tab" data-toggle="tab" href="#nav-desc" role="tab" aria-controls="nav-desc" aria-selected="true">DESCRIPTION</a>
+                        <a class="nav-item nav-link" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="false">EDITION</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+                    </div>
+                    <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <p>Consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
                     </div>
                 </div>
+
             </div>
         </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <h3 class="my-4">Du même professeur</h3>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
     </div>
 {% endblock %}

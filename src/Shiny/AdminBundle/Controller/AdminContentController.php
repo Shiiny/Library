@@ -21,7 +21,12 @@ class AdminContentController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $results = $em->getRepository('AppBundle:'.$entityName)->findAll();
+        if ($param !== 'book') {
+            $results = $em->getRepository('AppBundle:'.$entityName)->findAll();
+        }
+        else {
+            $results = $em->getRepository('AppBundle:Book')->getBooksComplet();
+        }
 
         return $this->render('@Admin/admin/'.$param.'.index.html.twig', array(
             'results' => $results,
@@ -68,7 +73,7 @@ class AdminContentController extends Controller
         if($form->isSubmitted() && $form->isValid()) {
             $em->flush();
 
-            $this->addFlash('notice', "L'élément a été modifié.");
+            $this->addFlash('info', "L'élément a été modifié.");
             return $this->redirectToRoute('admin_index', array('param' => $param));
         }
         return $this->render('@Admin/admin/'.$param.'.edit.html.twig', array(

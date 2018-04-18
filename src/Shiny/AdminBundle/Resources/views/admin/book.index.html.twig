@@ -3,6 +3,7 @@
 {% block breadcrumb %}<li class="breadcrumb-item active">Tous les cours</li>{% endblock %}
 
 {% block content %}
+    {{ dump(results) }}
     <div class="card mb-3">
             <div class="card-header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <span><i class="fa fa-table"></i> Tous les cours</span>
@@ -29,7 +30,7 @@
                             <tr>
                                 <td>{{ result.id }}</td>
                                 <td><a href="{{ path('admin_edit', {'param': 'book', 'id': result.id}) }}">{{ result.title }}</a></td>
-                                <td>{{ result.author }}</td>
+                                <td>{{ result.author.firstName }}</td>
                                 <td>{{ result.date|date('d/m/Y') }}</td>
                                 <td>
                                     <div class="btn-group mr-2">

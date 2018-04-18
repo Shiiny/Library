@@ -17,6 +17,14 @@
                     <a class="py-2" href="{{ path('app_homepage') }}">
                         <img id="logo" src="{{ asset('/img/Logo.png') }}" alt="Logo Collège Sévigné">
                     </a>
+                    {% for label, messages in app.flashes() %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }}" role="alert">
+                                <p class="message">Message flash : {{ message }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="py-2 d-none d-md-inline-block" href="{{ path('admin_homepage') }}">Admin</a>
                     {% endif %}

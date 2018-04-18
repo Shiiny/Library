@@ -6,13 +6,21 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     {{ form_start(form) }}
-        {{ form_row(form._username) }}
+        <div class="form-group">
+            {{ form_label(form._username, "Nom d'utilisateur") }}
+            {{ form_errors(form._username) }}
+            {{ form_widget(form._username, {'attr': {'class': 'form-control'}}) }}
+        </div>
 
-        {{ form_row(form._password) }}
+        <div class="form-group">
+            {{ form_label(form._password, "Mot de passe") }}
+            {{ form_errors(form._password) }}
+            {{ form_widget(form._password, {'attr': {'class': 'form-control'}}) }}
+        </div>
 
     <div class="col-xs-6 form-group pull-left checkbox">
         <input id="checkbox1" type="checkbox" name="remember">
-        <label for="checkbox1">Remember Me</label>
+        <label for="checkbox1">Se souvenir de moi</label>
     </div>
     <div class="col-xs-6 form-group pull-right">
         <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Se connecter">

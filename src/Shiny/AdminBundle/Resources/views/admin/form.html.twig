@@ -11,8 +11,11 @@
     </div>
 
     <div class="form-group">
-        {{ form_label(form.author, "Professeur du cours") }}
-        {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+        <h4>Professeur du cours</h4>
+        {{ form_label(form.author.firstName, "Nom") }}
+        {{ form_widget(form.author.firstName, {'attr': {'class': 'form-control'}}) }}
+        {{  form_label(form.author.lastName, "Prénom") }}
+        {{ form_widget(form.author.lastName, {'attr': {'class': 'form-control'}}) }}
     </div>
 
     <div class="form-group">
@@ -28,10 +31,12 @@
 
     <div class="form-group">
         {{ form_label(form.imageFile, "Couverture") }}
+        {{ form_errors(form.imageFile) }}
         {{ form_widget(form.imageFile) }}
     </div>
     <div class="form-group">
         {{ form_label(form.pdfFile, "Pdf du cours") }}
+        {{ form_errors(form.pdfFile) }}
         {{ form_widget(form.pdfFile) }}
     </div>
 

@@ -11,7 +11,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\PropertyAccess\PropertyPath;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class BookType extends AbstractType
 {
@@ -29,17 +31,19 @@ class BookType extends AbstractType
     {
         $builder
             ->add('title',          TextType::class)
-            ->add('author',         TextType::class)
+            ->add('author',         ProfType::class)
             ->add('content',        TextareaType::class)
             ->add('category',     EntityType::class, array(
                 'class'           => 'Shiny\AppBundle\Entity\Category',
                 'placeholder'     => 'Sélectionnez une catégorie',
             ))
-            ->add('imageFile',      VichFileType::class, array(
-                'required'  =>  false
+            ->add('imageFile',      VichImageType::class, array(
+                'allow_delete' => false,
+                'download_label' => false
             ))
             ->add('pdfFile',        VichFileType::class, array(
-                'required'  =>  false
+                'allow_delete' => false,
+                'download_label' => new PropertyPath ( 'pdf.originalName' )
             ));
 
         $builder->addEventListener(
