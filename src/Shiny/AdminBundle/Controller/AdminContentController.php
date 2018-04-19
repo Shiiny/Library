@@ -4,6 +4,8 @@ namespace Shiny\AdminBundle\Controller;
 
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Shiny\AppBundle\Entity\Book;
+use Shiny\UploadBundle\Annotation\Uploadable;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -42,8 +44,11 @@ class AdminContentController extends Controller
         $formCategory = $this->createForm('Shiny\AdminBundle\Form\CategoryType');
 
         $form->handleRequest($request);
+        dump($this->get('upload.annotation_reader')->getUploadableFields($entity));
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entity->setUpdatedAt(new \DateTime());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -52,6 +57,7 @@ class AdminContentController extends Controller
             return $this->redirectToRoute('admin_index', array('param' => $param));
         }
         return $this->render('@Admin/admin/'.$param.'.add.html.twig', array(
+            'entity' => $entity,
             'form'  =>  $form->createView(),
             'formCategory' => $formCategory->createView()
         ));
@@ -71,12 +77,15 @@ class AdminContentController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            $entity->setUpdatedAt(new \DateTime());
+
             $em->flush();
 
             $this->addFlash('info', "L'élément a été modifié.");
             return $this->redirectToRoute('admin_index', array('param' => $param));
         }
         return $this->render('@Admin/admin/'.$param.'.edit.html.twig', array(
+            'entity' => $entity,
             'form' => $form->createView(),
             'formCategory' => $formCategory->createView()
         ));

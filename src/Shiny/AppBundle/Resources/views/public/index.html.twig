@@ -11,7 +11,7 @@
         <div class="col-md-3">
             <div class="card mb-3 box-shadow">
                 <figure class="card-img-top">
-                    <img src="{{ vich_uploader_asset(book, 'imageFile') }}" alt="{{ book.image.originalName }}">
+                    <img src="{{ asset(book.file.pathname) }}" alt="">
                 </figure>
                 <div class="card-body">
                     <h6>{{ book.author.firstName }} {{ book.author.lastName }}</h6>

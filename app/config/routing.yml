@@ -1,3 +1,7 @@
+upload:
+    resource: "@UploadBundle/Resources/config/routing.yml"
+    prefix:   /
+
 security:
     resource: "@SecuritiesBundle/Resources/config/routing.yml"
     prefix:   /

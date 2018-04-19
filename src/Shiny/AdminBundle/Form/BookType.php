@@ -4,6 +4,7 @@ namespace Shiny\AdminBundle\Form;
 use Doctrine\ORM\EntityManager;
 use Shiny\AppBundle\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -32,19 +33,21 @@ class BookType extends AbstractType
         $builder
             ->add('title',          TextType::class)
             ->add('author',         ProfType::class)
-            ->add('content',        TextareaType::class)
+            ->add('content',        TextareaType::class, ['required' => false])
             ->add('category',     EntityType::class, array(
                 'class'           => 'Shiny\AppBundle\Entity\Category',
                 'placeholder'     => 'Sélectionnez une catégorie',
             ))
-            ->add('imageFile',      VichImageType::class, array(
+            ->add('file',           FileType::class, ['required' => false])
+            ->add('pdffile',           FileType::class, ['required' => false]);
+            /*->add('imageFile',      VichImageType::class, array(
                 'allow_delete' => false,
                 'download_label' => false
             ))
             ->add('pdfFile',        VichFileType::class, array(
                 'allow_delete' => false,
                 'download_label' => new PropertyPath ( 'pdf.originalName' )
-            ));
+            ));*/
 
         $builder->addEventListener(
             FormEvents::PRE_SUBMIT,

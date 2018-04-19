@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Shiny\AppBundle\AppBundle(),
             new Shiny\AdminBundle\AdminBundle(),
             new Shiny\SecuritiesBundle\SecuritiesBundle(),
+            new Shiny\UploadBundle\UploadBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

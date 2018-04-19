@@ -35,6 +35,13 @@ class Category
     private $books;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -112,5 +119,21 @@ class Category
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 }

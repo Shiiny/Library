@@ -282,44 +282,4 @@ class Book
     {
         $this->updatedAt = $updatedAt;
     }
-
-    /**
-     * Set pdfname.
-     *
-     * @param string $pdfname
-     *
-     * @return Book
-     */
-    public function setPdfname($pdfname)
-    {
-        $this->pdfname = $pdfname;
-
-        return $this;
-    }
-
-    /**
-     * Get pdfname.
-     *
-     * @return string
-     */
-    public function getPdfname()
-    {
-        return $this->pdfname;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPdffile()
-    {
-        return $this->pdffile;
-    }
-
-    /**
-     * @param File $pdffile/null
-     */
-    public function setPdffile($pdffile)
-    {
-        $this->pdffile = $pdffile;
-    }
 }

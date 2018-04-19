@@ -29,15 +29,21 @@
         {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
     </div>
 
+    {% if entity.file is not null %}
+        <img src="{{ asset(entity.file.pathname) }}" width="200" alt="">
+    {% endif %}
+
     <div class="form-group">
-        {{ form_label(form.imageFile, "Couverture") }}
-        {{ form_errors(form.imageFile) }}
-        {{ form_widget(form.imageFile) }}
+        {{ form_label(form.file, "Couverture") }}
+
+        {{ form_errors(form.file) }}
+        {{ form_widget(form.file) }}
     </div>
+
     <div class="form-group">
-        {{ form_label(form.pdfFile, "Pdf du cours") }}
-        {{ form_errors(form.pdfFile) }}
-        {{ form_widget(form.pdfFile) }}
+        {{ form_label(form.pdffile, "Pdf du cours") }}
+        {{ form_errors(form.pdffile) }}
+        {{ form_widget(form.pdffile) }}
     </div>
 
     <input type="submit" class="btn btn-primary" value="Sauvegarder">

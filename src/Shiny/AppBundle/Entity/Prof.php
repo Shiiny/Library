@@ -40,6 +40,13 @@ class Prof
      */
     private $books;
 
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+
 
     /**
      * Get id.
@@ -140,5 +147,21 @@ class Prof
     public function getBooks()
     {
         return $this->books;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 }
