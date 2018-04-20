@@ -29,6 +29,17 @@ class BookRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    public function getLastBooks($limite)
+    {
+        $query = $this->getBooksWithCategorie()
+            ->orderBy('b.id', 'DESC')
+            ->setMaxResults($limite)
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
     public function getSearch($search)
     {
         $query = $this->getBooksWithCategorie()

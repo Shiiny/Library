@@ -23,5 +23,17 @@ admin_delete:
         id: \d+
 
 admin_user_index:
-    path:     /users/
+    path:     /user/
     defaults: { _controller: AdminBundle:AdminUser:indexUser }
+
+admin_user_delete:
+    path:     /user/delete/{id}
+    defaults: { _controller: AdminBundle:AdminUser:deleteUser}
+    requirements:
+        id: \d+
+
+admin_user_role:
+    path:     /user/role/{id}
+    defaults: { _controller: AdminBundle:AdminUser:roleUser}
+    requirements:
+        id: \d+

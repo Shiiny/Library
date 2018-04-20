@@ -57,8 +57,16 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="date_register", type="datetime", nullable=true)
+     */
+    private $dateRegister;
+
+
     public function __construct()
     {
+        $this->dateRegister = new \DateTime();
         $this->isActive = true;
     }
 
@@ -191,4 +199,21 @@ class User implements UserInterface, \Serializable
     {
         $this->roles = $roles;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateRegister()
+    {
+        return $this->dateRegister;
+    }
+
+    /**
+     * @param \DateTime $dateRegister
+     */
+    public function setDateRegister($dateRegister)
+    {
+        $this->dateRegister = $dateRegister;
+    }
+
 }

@@ -1,0 +1,49 @@
+{% extends '@Admin/admin/admin.dashboard.html.twig' %}
+
+{% block breadcrumb %}<li class="breadcrumb-item active">Liste des Auteurs/Professeurs</li>{% endblock %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <span><i class="fa fa-table"></i> Liste des Auteurs/Professeurs</span>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    <a href="" class="btn btn-sm btn-outline-secondary">Ajouter</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ result.firstName }}</td>
+                            <td>{{ result.lastName }}</td>
+                            <td>
+                                <div class="btn-group mr-2">
+                                    <a href="{{ path('admin_edit', {'param': 'category', 'id': result.id}) }}" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
+                                    <form action="{{ path('admin_delete', {'param': 'category', 'id': result.id}) }}" method="post">
+                                        <input type="hidden" name="form[_token]" value="{{ csrf_token('form') }}" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">---</div>
+    </div>
+
+
+{% endblock %}

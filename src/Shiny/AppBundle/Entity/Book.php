@@ -57,6 +57,7 @@ class Book
     /**
      * @UploadableField(filename="filename", path="uploads")
      * @Assert\Image(maxWidth="5000", maxHeight="5000")
+     * @Assert\NotBlank()
      */
     private $file;
 
@@ -69,7 +70,10 @@ class Book
 
     /**
      * @UploadableField(filename="pdfname", path="uploads/pdf")
-     * @Assert\File(mimeTypes={"application/pdf", "application/x-pdf"})
+     * @Assert\File(
+     *     mimeTypes={"application/pdf", "application/x-pdf"},
+     *     maxSize="5120k"
+     *     )
      */
     private $pdffile;
 

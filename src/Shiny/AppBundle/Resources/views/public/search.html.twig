@@ -1,93 +1,45 @@
 {% extends "@App/public/base.html.twig" %}
 
 {% block app_body %}
-    {{ dump(book) }}
+    {{ dump(books) }}
     <div class="row">
-                <div class="sidebar col-sm-4 col-xs-12">
-                    <h3>Affinez votre recherche</h3>
+        <div class="sidebar col-sm-4 col-xs-12">
+            <h3>Affinez votre recherche</h3>
 
-                    <div class="sidebarInner sidebarCategory">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Catégories</div>
-                            <div class="panel-body">
-                                <ul class="categoryList">
-                                    <li><a href="#">Littérature Grecques</a></li>
-                                    <li><a href="#">Littérature Grecques</a></li>
-                                    <li><a href="#">Littérature Grecques</a></li>
-                                    <li><a href="#">Littérature Grecques</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebarInner sidebarCategory">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Professeurs</div>
-                            <div class="panel-body">
-                                <ul class="categoryList">
-                                    <li><a href="#">Thorel</a></li>
-                                    <li><a href="#">Nau</a></li>
-                                    <li><a href="#">Lefèbvre</a></li>
-                                </ul>
-                            </div>
-                        </div>
+            <div class="sidebarInner sidebarCategory">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Catégories</div>
+                    <div class="panel-body">
+                        <ul class="categoryList">
+                            {% for item in books %}
+                                <li><a href="#">{{ item.category.name }}</a></li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
-
-                <div class="maincontent col-sm-8 col-xs-12">
-                    <div class="resultBar">
-                        <h2>Résultats de la recherche</h2>
-                        <div class="list-inline">
-                            <p>Résultats ?/10</p>
-                            <div class="itemPagination">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
+            </div>
+            <div class="sidebarInner sidebarCategory">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Professeurs</div>
+                    <div class="panel-body">
+                        <ul class="categoryList">
+                            {% for prof in books %}
+                                <li><a href="#">{{ prof.author.firstName }} {{ prof.author.lastName }}</a></li>
+                            {% endfor %}
+                        </ul>
                     </div>
-                    {% for result in book %}
-                    <div class="card mb-3 box-shadow">
-                        <div class="card-body row">
-                            <div class="col-sm-4 col-xs-12">
-                                <img src="{{ vich_uploader_asset(result, 'imageFile') }}" class="card-img" alt="{{ result.image.originalName }}"">
-                            </div>
-                            <div class="col-sm-8 col-xs-12">
-                                <div class="itemDetails">
-                                    <!--<ul class="list-inline rating">
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    </ul>-->
-                                    <h3 class="itemTitle"><a href="{{ path('app_single', {'id': result.id}) }}">{{ result.title }}</a></h3>
-                                    <p class="itemCategorie"></p>
-                                    <p class="itemAuthor">{{ result.author.firstName }}</p>
-                                    <p class="itemYear">{{ result.date|date("Y") }}</p>
-                                    <p class="itemcontent">{{ result.content }}</p>
-                                    <a href="{{ path('app_single', {'id': result.id}) }}" class="btn btn-outline-secondary">Consulter le document</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+                </div>
+            </div>
+        </div>
 
+        <div class="maincontent col-sm-8 col-xs-12">
+            <h2>Résultats de la recherche</h2>
+            {% if books is empty %}
+            <p>Pas de réultat</p>
+            {% else %}
+            <div class="resultBar">
+                <div class="list-inline">
+                    <p>Résultats ?/10</p>
                     <div class="itemPagination">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
@@ -111,6 +63,51 @@
                     </div>
                 </div>
             </div>
+            {% for result in books %}
+            <div class="card mb-3 box-shadow">
+                <div class="card-body row">
+                    <div class="col-sm-4 col-xs-12">
+                        <img src="{{ asset(result.file.pathname) }}" class="card-img" alt="{{ result.filename }}"">
+                    </div>
+                    <div class="col-sm-8 col-xs-12">
+                        <div class="itemDetails">
+                            <h3 class="itemTitle"><a href="{{ path('app_single', {'id': result.id}) }}">{{ result.title }}</a></h3>
+                            <p class="itemCategorie"></p>
+                            <p class="itemAuthor">{{ result.author.firstName|upper }} {{ result.author.lastName }}</p>
+                            <p class="itemYear">{{ result.date|date("Y") }}</p>
+                            <p class="itemcontent">{{ result.content }}</p>
+                            <a href="{{ path('app_single', {'id': result.id}) }}" class="btn btn-outline-secondary">Consulter le document</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="itemPagination">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
 
 
 

@@ -10,18 +10,44 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class AdminUserController
- * @Security("is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_SUPER_ADMIN')")
  */
 class AdminUserController extends Controller
 {
     public function indexUserAction()
     {
-        $results = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
-        $form = $this->createForm(UserFormType::class);
+        $formRole = $this->createForm(UserFormType::class);
         return $this->render('@Admin/admin/user.index.html.twig', array(
-            'results' => $results,
-            'form'  => $form->createView()
+            'users' => $users,
+            'formRole'  => $formRole->createView()
         ));
+    }
+
+    public function roleUserAction(Request $request, User $user)
+    {
+        if ($request->isMethod('POST')) {
+            $newRole = [$request->request->get('new_role_user')];
+            $user->setRoles($newRole);
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            $this->addFlash('success', "Le role de l'utilisateur a été modifié.");
+        }
+        return $this->redirectToRoute('admin_user_index');
+    }
+
+
+    public function deleteUserAction(Request $request, User $user)
+    {
+        if ($request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($user);
+            $em->flush();
+
+            $this->addFlash('warning', "L'utilisateur ".$user->getUsername()." a été supprimé.");
+        }
+        return $this->redirectToRoute('admin_user_index');
     }
 }

@@ -10,4 +10,13 @@ namespace Shiny\AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLastRegister($limite)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->orderBy('u.id', 'DESC')
+            ->setMaxResults($limite)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

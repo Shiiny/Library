@@ -18,6 +18,7 @@ class UploadHandler
 
     public function uploadFile($entity, $property, $annotation)
     {
+
         $file = $this->accessor->getValue($entity, $property);
         if ($file instanceof UploadedFile) {
             $this->removeOldFile($entity, $annotation);

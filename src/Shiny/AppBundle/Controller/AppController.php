@@ -36,11 +36,8 @@ class AppController extends Controller
         $search = $form['search'];
 
         $req = $this->getDoctrine()->getRepository(Book::class)->getSearch($search);
-
-        if (null === $req) {
-            throw new NotFoundHttpException("Aucun résultat");
-        }
-        return $this->render('@App/public/search.html.twig', array('book' => $req));
+        dump($req);
+        return $this->render('@App/public/search.html.twig', array('books' => $req));
     }
 
 }

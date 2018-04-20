@@ -14,11 +14,12 @@ class UserFormType extends AbstractType
     {
         $builder
             ->add('roles',  ChoiceType::class, array(
-                'multiple'  =>  true,
-                'expanded'  =>  true,
                 'choices'   =>  [
-                    'Admin' =>  'ROLE_ADMIN',
-                    'Manager'   =>  'ROLE_MANAGER'
+                    'Super admin' => 'ROLE_SUPER_ADMIN',
+                    'Administrateur' =>  'ROLE_ADMIN',
+                    'Modérateur'   =>  'ROLE_MODERATEUR',
+                    'Contributeur' =>   'ROLE_CONTRIBUTEUR',
+                    'Utilisateur'   =>  'ROLE_USER'
                 ]
             ))
             ;

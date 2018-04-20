@@ -45,12 +45,30 @@
                         </ul>
 
                     </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Professeurs">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProfs" data-parent="#exampleAccordion">
+                            <i class="fas fa-tags"></i>
+                            <span class="nav-link-text">Les Auteur/Professeurs</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseProfs">
+                            <li>
+                                <a href="{{ path('admin_index', {'param': 'prof'}) }}">Liste des Professeurs</a>
+                            </li>
+                            <li>
+                                <a href="">Ajouter un professeur</a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="User">
                         <a class="nav-link" href="{{ path('admin_user_index') }}">
                             <i class="fas fa-user"></i>
                             <span class="nav-link-text">Utilisateur</span>
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -88,7 +106,7 @@
                         </div>
                         <div class="modal-body">Sélectionnez "Déconnexion" ci-dessous si vous êtes prêt à terminer votre session en cours.</div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
                             <a class="btn btn-primary" href="{{ path('security_logout') }}">Déconnexion</a>
                         </div>
                     </div>

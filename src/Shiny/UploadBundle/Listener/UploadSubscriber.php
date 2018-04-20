@@ -55,6 +55,7 @@ class UploadSubscriber implements EventSubscriber
      */
     public function preUpdate(EventArgs $event)
     {
+        dump($event);
         $this->preEvent($event);
     }
 
@@ -66,7 +67,6 @@ class UploadSubscriber implements EventSubscriber
     {
         $entity = $event->getEntity();
         foreach ($this->reader->getUploadableFields($entity) as $property => $annotation) {
-            $this->handler->removeOldFile($entity, $annotation);
             $this->handler->uploadFile($entity, $property, $annotation);
         }
     }
@@ -80,7 +80,6 @@ class UploadSubscriber implements EventSubscriber
         $entity = $event->getEntity();
         // Pour tous les attributs contenant une annotation "uploadableField"
         foreach ($this->reader->getUploadableFields($entity) as $property => $annotation) {
-            dump($entity, $property, $annotation);
             $this->handler->setFileFromFilename($entity, $property, $annotation);
         }
     }

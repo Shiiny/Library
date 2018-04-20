@@ -6,11 +6,6 @@
     <div class="card mb-3">
         <div class="card-header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <span><i class="fa fa-table"></i> Utilisateurs</span>
-            <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group mr-2">
-                    <a href="" class="btn btn-sm btn-outline-secondary">Ajouter</a>
-                </div>
-            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -25,16 +20,28 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for result in results %}
+                    {% for user in users %}
                         <tr>
-                            <td>{{ result.id }}</td>
-                            <td>{{ result.username }}</a></td>
-                            <td>{{ result.email }}</td>
-                            <td>{{ result.roles|format_args() }}</td>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</a></td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                    <select class="form-control" id="role_user_{{ user.id }}" name="role_user">
+                                        <option {% if "ROLE_SUPER_ADMIN" in user.roles[0] %}selected="selected"{% endif %} value="ROLE_SUPER_ADMIN">Super-admin</option>
+                                        <option {% if "ROLE_ADMIN" in user.roles[0] %}selected="selected"{% endif %} value="ROLE_ADMIN">Administrateur</option>
+                                        <option {% if "ROLE_CONTRIBUTEUR" in user.roles[0] %}selected="selected"{% endif %} value="ROLE_CONTRIBUTEUR">Contributeur</option>
+                                        <option {% if "ROLE_MODERATEUR" in user.roles[0] %}selected="selected"{% endif %} value="ROLE_MODERATEUR">Modérateur</option>
+                                        <option {% if "ROLE_USER" in user.roles[0] %}selected="selected"{% endif %} value="ROLE_USER">Utilisateur</option>
+                                    </select>
+                            </td>
+
                             <td>
                                 <div class="btn-group mr-2">
-                                    <a href="" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
-                                    <form action="" method="post">
+                                    <form action="{{ path('admin_user_role', {'id': user.id}) }}" method="post">
+                                    <input type="hidden" id="input_role_user_{{ user.id }}" name="new_role_user"/>
+                                        <button type="submit" class="btn btn-sm btn-outline-success"><i class="fas fa-check"></i></button>
+                                    </form>
+                                    <form action="{{ path('admin_user_delete', {'id': user.id}) }}" method="post">
                                         <input type="hidden" name="form[_token]" value="{{ csrf_token('form') }}" />
                                         <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
                                     </form>
@@ -46,10 +53,7 @@
                 </table>
             </div>
         </div>
-        <div class="card-footer small text-muted">---</div>
+        <div class="card-footer small text-muted">Mis à jour le {{ 'now'|date('d-m-Y') }}</div>
     </div>
-
-    <p>Welcome {{ app.user ? app.user.email : 'Aquanauts' }}</p>
-    {{ form_start(form) }}
-    {{ form_end(form) }}
 {% endblock %}
+

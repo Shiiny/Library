@@ -2,3 +2,28 @@
 .message {
     margin-bottom: 0;
 }
+.card-img-top {
+    height: 90px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.card-img-top img {
+    width: 100%;
+}
+.card.book {
+    border-color: #28586f;
+}
+.card.book .card-header {
+    background-color: #28586f;
+    color: #fff;
+}
+.avatar {
+    width: 100%;
+    text-align: center;
+    padding: 1em;
+}
+.avatar img {
+    vertical-align: middle;
+    width: 100%;
+    border-style: none;
+}

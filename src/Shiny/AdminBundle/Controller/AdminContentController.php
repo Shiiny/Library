@@ -44,7 +44,6 @@ class AdminContentController extends Controller
         $formCategory = $this->createForm('Shiny\AdminBundle\Form\CategoryType');
 
         $form->handleRequest($request);
-        dump($this->get('upload.annotation_reader')->getUploadableFields($entity));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entity->setUpdatedAt(new \DateTime());

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     //Ajout option nouvelle catégorie
     var list = $('#appbundle_book_category');
     $(list).append( '<option id="newCategory">Nouvelle catégorie</option>' );
@@ -23,4 +22,12 @@ $(document).ready(function() {
             });
         }
     });
+});
+
+// Récupération de la valeur du select pour les roles
+$('select').change(function(){
+    var input = '#input_' + this.id;
+    var optionSelected = 'select#' + this.id + ' option:selected';
+    var newRole = $(optionSelected).val();
+    $(input).val(newRole);
 });
