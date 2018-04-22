@@ -10,4 +10,16 @@ namespace Shiny\AppBundle\Repository;
  */
 class ProfRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function searchFromName($firstName, $lastName)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->where('p.firstName :firstname')
+            ->setParameter('firstname', $firstName)
+            ->andWhere('p.lastName :lastname')
+            ->setParameter('lastname', $lastName)
+            ->getQuery();
+
+
+        return $query->getFirstResult();
+    }
 }

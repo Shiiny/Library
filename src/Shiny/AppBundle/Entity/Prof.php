@@ -2,6 +2,7 @@
 
 namespace Shiny\AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,7 +47,19 @@ class Prof
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(name="nameComplet", type="string", length=255, unique=true)
+     */
+    private $nameComplet;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->books = new ArrayCollection();
+        $this->updatedAt = new \DateTime();
+    }
 
     /**
      * Get id.
@@ -105,13 +118,6 @@ class Prof
     {
         return $this->lastName;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->books = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add book.
@@ -163,5 +169,26 @@ class Prof
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNameComplet()
+    {
+        return $this->nameComplet;
+    }
+
+    /**
+     * @param mixed $nameComplet
+     */
+    public function setNameComplet($nameComplet)
+    {
+        $this->nameComplet = $nameComplet;
+    }
+
+    public function __toString()
+    {
+        return $this->nameComplet;
     }
 }

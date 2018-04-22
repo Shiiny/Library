@@ -1,0 +1,10 @@
+{% extends "@Admin/admin/prof.add.html.twig" %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item">
+        <a href="{{ path('admin_index', {'param': 'prof'}) }}">Tous les Professeurs</a>
+    </li>
+    <li class="breadcrumb-item active">Modifier un professeur</li>
+{% endblock %}
+
+{% block content_title %}Modifier un Professeur{% endblock %}

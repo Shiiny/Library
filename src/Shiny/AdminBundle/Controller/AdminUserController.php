@@ -3,7 +3,7 @@
 namespace Shiny\AdminBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Shiny\AdminBundle\Form\UserFormType;
+use Shiny\AdminBundle\Form\UserType;
 use Shiny\SecuritiesBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ class AdminUserController extends Controller
     {
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
-        $formRole = $this->createForm(UserFormType::class);
+        $formRole = $this->createForm(UserType::class);
         return $this->render('@Admin/admin/user.index.html.twig', array(
             'users' => $users,
             'formRole'  => $formRole->createView()

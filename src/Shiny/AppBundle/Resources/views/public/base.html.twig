@@ -37,13 +37,13 @@
         <div class="container">
             <div class="row d-flex flex-column flex-md-row justify-content-between">
                 <div class="info col-md-6">
-                    <img class="logo-footer" src="/img/Logo-blanc.png" alt="Logo Collège Sévigné">
+                    <img class="logo-footer" src="{{ asset('/img/Logo-blanc.png') }}" alt="Logo Collège Sévigné">
                     <h3>Bibliothèque Numérique</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
                 <div class="links">
                     <ul>
-                        <li>Contact</li>
+                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
                         <li>Mentions légales</li>
                         <li>Liens</li>
                     </ul>

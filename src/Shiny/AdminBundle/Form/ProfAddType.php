@@ -2,19 +2,28 @@
 
 namespace Shiny\AdminBundle\Form;
 
+use Doctrine\ORM\EntityManager;
+use Shiny\AdminBundle\Form\Listener\AddProfListerner;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProfType extends AbstractType
+class ProfAddType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
+    private $em;
+
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nameComplet');
+            ->add('firstName',  TextType::class)
+            ->add('lastName',   TextType::class)
+            ->addEventSubscriber(new AddProfListerner($this->em));
     }/**
      * {@inheritdoc}
      */
@@ -30,7 +39,7 @@ class ProfType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_prof';
+        return 'appbundle_addprof';
     }
 
 

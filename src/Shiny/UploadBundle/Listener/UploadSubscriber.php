@@ -55,7 +55,6 @@ class UploadSubscriber implements EventSubscriber
      */
     public function preUpdate(EventArgs $event)
     {
-        dump($event);
         $this->preEvent($event);
     }
 

@@ -22,6 +22,30 @@ $(document).ready(function() {
             });
         }
     });
+    //Ajout option nouvelle catégorie
+    var listProf = $('#appbundle_book_author');
+    var prof = $('#prof');
+    $(prof).append( '<button id="newProf">Nouveau professeur</button>' );
+
+    var newProf = $('#newProf');
+
+    //Si l'utilisateur choisit nouvelle catégorie
+        $(newProf).click(function() {
+            //Modale avec input pour saisir le titre de la nouvelle catégorie
+            $('#addProf').modal('show');
+
+            $('#addNewProf').click(function(){
+                var AuthorFirstName = $('#appbundle_addprof_firstName').val();
+                var newAuthorFirstName = AuthorFirstName.charAt(0).toUpperCase() + AuthorFirstName.substring(1);
+                var AuthorLastName = $('#appbundle_addprof_lastName').val();
+                var newAuthorLastName = AuthorLastName.charAt(0).toUpperCase() + AuthorLastName.substring(1)
+                newAuthor =  newAuthorFirstName + ' ' + newAuthorLastName;
+
+                //On ajoute celle-ci à la liste déroulante et on ferme la modale
+                $(listProf).prepend( '<option selected>' + newAuthor +'</option>' );
+                $('#addProf').modal('hide');
+            });
+        });
 });
 
 // Récupération de la valeur du select pour les roles

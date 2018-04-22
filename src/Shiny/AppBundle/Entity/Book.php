@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Book
  *
- * @ORM\Table(name="book")
+ * @ORM\Table(name="library_book")
  * @ORM\Entity(repositoryClass="Shiny\AppBundle\Repository\BookRepository")
  * @Uploadable()
  */
@@ -99,6 +99,7 @@ class Book
     public function __construct()
     {
         $this->date = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**

@@ -8,7 +8,7 @@
             <span><i class="fa fa-table"></i> Liste des Auteurs/Professeurs</span>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
-                    <a href="" class="btn btn-sm btn-outline-secondary">Ajouter</a>
+                    <a href="{{ path('admin_add', {'param': 'prof'}) }}" class="btn btn-sm btn-outline-secondary">Ajouter</a>
                 </div>
             </div>
         </div>
@@ -29,8 +29,8 @@
                             <td>{{ result.lastName }}</td>
                             <td>
                                 <div class="btn-group mr-2">
-                                    <a href="{{ path('admin_edit', {'param': 'category', 'id': result.id}) }}" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
-                                    <form action="{{ path('admin_delete', {'param': 'category', 'id': result.id}) }}" method="post">
+                                    <a href="{{ path('admin_edit', {'param': 'prof', 'id': result.id}) }}" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
+                                    <form action="{{ path('admin_delete', {'param': 'prof', 'id': result.id}) }}" method="post">
                                         <input type="hidden" name="form[_token]" value="{{ csrf_token('form') }}" />
                                         <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
                                     </form>

@@ -5,6 +5,7 @@ namespace Shiny\AdminBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Shiny\AppBundle\Entity\Book;
+use Shiny\AppBundle\Entity\Prof;
 use Shiny\UploadBundle\Annotation\Uploadable;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,6 @@ class AdminContentController extends Controller
     public function indexAction($param)
     {
         $entityName = ucfirst($param);
-
         $em = $this->getDoctrine()->getManager();
 
         if ($param !== 'book') {
@@ -42,11 +42,15 @@ class AdminContentController extends Controller
         $entity = new $entityName();
         $form = $this->createForm('Shiny\AdminBundle\Form\\'.ucfirst($param).'Type', $entity);
         $formCategory = $this->createForm('Shiny\AdminBundle\Form\CategoryType');
+        $formProf = $this->createForm('Shiny\AdminBundle\Form\ProfAddType');
+
+        if ($param === "prof") {
+            $form = $formProf;
+        }
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entity->setUpdatedAt(new \DateTime());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -58,6 +62,7 @@ class AdminContentController extends Controller
         return $this->render('@Admin/admin/'.$param.'.add.html.twig', array(
             'entity' => $entity,
             'form'  =>  $form->createView(),
+            'formProf'  => $formProf->createView(),
             'formCategory' => $formCategory->createView()
         ));
 
@@ -72,6 +77,12 @@ class AdminContentController extends Controller
 
         $form = $this->createForm('Shiny\AdminBundle\Form\\'.$entityName.'Type', $entity);
         $formCategory = $this->createForm('Shiny\AdminBundle\Form\CategoryType');
+        $formProf = $this->createForm('Shiny\AdminBundle\Form\ProfAddType');
+
+        if ($param === "prof") {
+
+            $form = $this->createForm('Shiny\AdminBundle\Form\ProfAddType', $entity);;
+        }
 
         $form->handleRequest($request);
 
@@ -86,6 +97,7 @@ class AdminContentController extends Controller
         return $this->render('@Admin/admin/'.$param.'.edit.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView(),
+            'formProf' => $formProf->createView(),
             'formCategory' => $formCategory->createView()
         ));
 

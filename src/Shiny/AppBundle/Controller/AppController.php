@@ -40,4 +40,10 @@ class AppController extends Controller
         return $this->render('@App/public/search.html.twig', array('books' => $req));
     }
 
+
+    public function contactAction(Request $request)
+    {
+        $formContact = $this->createForm('Shiny\AppBundle\Form\ContactType');
+        return $this->render('@App/public/contact.html.twig', array('formContact' => $formContact->createView()));
+    }
 }
