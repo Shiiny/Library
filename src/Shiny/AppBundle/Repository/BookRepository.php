@@ -1,6 +1,7 @@
 <?php
 
 namespace Shiny\AppBundle\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * BookRepository
@@ -30,6 +31,30 @@ class BookRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    public function getFromAuthor($name)
+    {
+        $query = $this->getBooksWithCategorie()
+            ->leftJoin('b.author', 'a')
+            ->addSelect('a')
+            ->where('a.nameComplet LIKE :name')
+            ->setParameter('name', $name)
+            ->getQuery();
+
+        return $query->getResult();
+
+    }
+
+    public function findAllBooksWithPaginate($currentPage, $limite)
+    {
+        $query = $this->getBooksWithCategorie()
+            ->leftJoin('b.author', 'a')
+            ->addSelect('a')
+            ->setFirstResult(($currentPage -1) * $limite)
+            ->setMaxResults($limite);
+
+        return new Paginator($query, true);
+    }
+
     public function getLastBooks($limite)
     {
         $query = $this->getBooksWithCategorie()
@@ -45,10 +70,33 @@ class BookRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->getBooksWithCategorie()
             ->leftJoin('b.author', 'a')
             ->addSelect('a')
-            ->where('b.title LIKE :variable OR c.name LIKE :variable OR a.firstName LIKE :variable OR a.lastName LIKE :variable OR b.content LIKE :variable OR b.date <= :variable')
-            ->setParameter('variable', '%'.$search.'%')
+            ->where(
+                'b.title LIKE :variable 
+                OR c.name LIKE :variable 
+                OR a.firstName LIKE :variable 
+                OR a.lastName LIKE :variable 
+                OR b.yearBook LIKE :variable  
+                OR b.content LIKE :variable ')
+            ->setParameter('variable', '%'.$search.'%');
+
+        return $query;
+    }
+
+    public function countBySearch($search)
+    {
+        $query = $this->getSearch($search)
+            ->select('COUNT(b)')
             ->getQuery();
 
-        return $query->getResult();
+        return $query->getSingleScalarResult();
+    }
+
+    public function getSearchWithPaginate($search, $currentPage, $limite)
+    {
+        $query = $this->getSearch($search)
+            ->orderBy('b.updatedAt', 'DESC')
+            ->setFirstResult(($currentPage -1) * $limite)
+            ->setMaxResults($limite);
+        return new Paginator($query, true);
     }
 }

@@ -17,3 +17,19 @@ services:
     security.login_form_authenticator:
         class: Shiny\SecuritiesBundle\Security\LoginFormAuthenticator
         arguments: ['@Symfony\Component\Form\FormFactoryInterface', '@doctrine.orm.entity_manager', '@router', '@security.password_encoder']
+
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.date:
+        class: Twig_Extensions_Extension_Date
+        arguments: ["@translator"]
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }

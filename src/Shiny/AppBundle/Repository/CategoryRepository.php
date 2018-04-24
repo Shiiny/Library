@@ -1,6 +1,7 @@
 <?php
 
 namespace Shiny\AppBundle\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * CategoryRepository
@@ -10,4 +11,13 @@ namespace Shiny\AppBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllWithPaginate($currentPage, $limite)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->orderBy('c.name', 'DESC')
+            ->setFirstResult(($currentPage -1) * $limite)
+            ->setMaxResults($limite);
+        return new Paginator($query);
+    }
+
 }

@@ -4,6 +4,7 @@ namespace Shiny\AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Prof
@@ -24,14 +25,12 @@ class Prof
 
     /**
      * @var string
-     *
      * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;

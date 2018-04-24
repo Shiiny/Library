@@ -12,7 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="library_user")
  * @ORM\Entity(repositoryClass="Shiny\AppBundle\Repository\UserRepository")
- * @UniqueEntity(fields={"email"}, message="Le compte pour cette adresse existe déjà !")
+ * @UniqueEntity(fields={"email"}, message="Cette e-mail est déjà pris")
+ * @UniqueEntity(fields={"username"}, message="Nom d'utilisateur déjà pris")
  */
 class User implements UserInterface, \Serializable
 {
@@ -25,7 +26,8 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Vous devez rentrer un nom d'utilisateur")
+     * @Assert\Length(min="3", minMessage="Le nom d'utilisateur doit être {{ limit }} caractères minimum.")
      */
     private $username;
 
@@ -42,7 +44,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Vous devez renseigner une adresse e-mail")
      * @Assert\Email()
      */
     private $email;
@@ -98,11 +100,11 @@ class User implements UserInterface, \Serializable
     public function getRoles()
     {
         $roles = $this->roles;
-        // base ROLE_USER!
-        if (!in_array('ROLE_USER', $roles)) {
+        // Afin d'être sûr qu'un user a toujours au moins 1 rôle
+        if (empty($roles)) {
             $roles[] = 'ROLE_USER';
         }
-        return $roles;
+        return array_unique($roles);
     }
 
     public function eraseCredentials()

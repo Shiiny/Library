@@ -18,20 +18,34 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class AdminContentController extends Controller
 {
 
-    public function indexAction($param)
+    public function indexAction($param, $page)
     {
         $entityName = ucfirst($param);
         $em = $this->getDoctrine()->getManager();
+        $nbPerPage = 5;
 
         if ($param !== 'book') {
-            $results = $em->getRepository('AppBundle:'.$entityName)->findAll();
+            $results = $em->getRepository('AppBundle:'.$entityName)->findAllWithPaginate($page, $nbPerPage);
         }
         else {
-            $results = $em->getRepository('AppBundle:Book')->getBooksComplet();
+            $results = $em->getRepository('AppBundle:Book')->findAllBooksWithPaginate($page, $nbPerPage);
+        }
+
+        $nbPages = ceil(count($results)/$nbPerPage);
+        $paging = [
+            'page' => $page,
+            'nbPages' => $nbPages,
+            'route' => 'admin_index',
+            'param' => $param
+        ];
+
+        if($page > $nbPages) {
+            throw $this->createNotFoundException("La Page ".$page." n'existe pas.");
         }
 
         return $this->render('@Admin/admin/'.$param.'.index.html.twig', array(
             'results' => $results,
+            'paging' => $paging
         ));
     }
 
@@ -45,7 +59,7 @@ class AdminContentController extends Controller
         $formProf = $this->createForm('Shiny\AdminBundle\Form\ProfAddType');
 
         if ($param === "prof") {
-            $form = $formProf;
+            $form = $this->createForm('Shiny\AdminBundle\Form\ProfAddType', $entity);
         }
 
         $form->handleRequest($request);
@@ -81,7 +95,7 @@ class AdminContentController extends Controller
 
         if ($param === "prof") {
 
-            $form = $this->createForm('Shiny\AdminBundle\Form\ProfAddType', $entity);;
+            $form = $this->createForm('Shiny\AdminBundle\Form\ProfAddType', $entity);
         }
 
         $form->handleRequest($request);

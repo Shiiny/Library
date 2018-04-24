@@ -1,6 +1,7 @@
 <?php
 
 namespace Shiny\AppBundle\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * ProfRepository
@@ -21,5 +22,24 @@ class ProfRepository extends \Doctrine\ORM\EntityRepository
 
 
         return $query->getFirstResult();
+    }
+
+    public function getLastProfs($limite)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults($limite)
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function findAllWithPaginate($currentPage, $limite)
+    {
+        $query = $this->createQueryBuilder('p')
+        ->orderBy('p.firstName', 'DESC')
+        ->setFirstResult(($currentPage -1) * $limite)
+        ->setMaxResults($limite);
+        return new Paginator($query, true);
     }
 }

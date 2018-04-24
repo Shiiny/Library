@@ -9,8 +9,10 @@ app_single:
         id: \d+
 
 app_handle_search:
-    path:     /search
-    defaults: { _controller: AppBundle:App:handleSearch }
+    path:     /search/{page}
+    defaults: { _controller: AppBundle:App:handleSearch, page: 1 }
+    requirements:
+        page: \d+
 
 app_contact:
     path:     /contact

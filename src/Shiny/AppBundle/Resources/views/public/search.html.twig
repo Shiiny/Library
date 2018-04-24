@@ -1,7 +1,6 @@
 {% extends "@App/public/base.html.twig" %}
 
 {% block app_body %}
-    {{ dump(books) }}
     <div class="row">
         <div class="sidebar col-sm-4 col-xs-12">
             <h3>Affinez votre recherche</h3>
@@ -24,7 +23,7 @@
                     <div class="panel-body">
                         <ul class="categoryList">
                             {% for prof in books %}
-                                <li><a href="#">{{ prof.author.firstName }} {{ prof.author.lastName }}</a></li>
+                                <li><a href="#">{{ prof.author.firstName|upper }} {{ prof.author.lastName }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -33,82 +32,49 @@
         </div>
 
         <div class="maincontent col-sm-8 col-xs-12">
-            <h2>Résultats de la recherche</h2>
+            <h2>Résultats de la recherche : "{{ search }}"</h2>
             {% if books is empty %}
-            <p>Pas de réultat</p>
+                <p>Pas de réultat</p>
             {% else %}
+
             <div class="resultBar">
                 <div class="list-inline">
-                    <p>Résultats ?/10</p>
+                    <p>Résultats : {{ paging.count }}</p>
                     <div class="itemPagination">
                         <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            {% include '@App/public/pagination.html.twig' %}
                         </nav>
                     </div>
                 </div>
             </div>
             {% for result in books %}
-            <div class="card mb-3 box-shadow">
-                <div class="card-body row">
-                    <div class="col-sm-4 col-xs-12">
-                        <img src="{{ asset(result.file.pathname) }}" class="card-img" alt="{{ result.filename }}"">
-                    </div>
-                    <div class="col-sm-8 col-xs-12">
-                        <div class="itemDetails">
-                            <h3 class="itemTitle"><a href="{{ path('app_single', {'id': result.id}) }}">{{ result.title }}</a></h3>
-                            <p class="itemCategorie"></p>
-                            <p class="itemAuthor">{{ result.author.firstName|upper }} {{ result.author.lastName }}</p>
-                            <p class="itemYear">{{ result.date|date("Y") }}</p>
-                            <p class="itemcontent">{{ result.content }}</p>
-                            <a href="{{ path('app_single', {'id': result.id}) }}" class="btn btn-outline-secondary">Consulter le document</a>
+                <div class="card mb-3 box-shadow">
+                    <div class="card-body row">
+                        <div class="col-sm-4 col-xs-12">
+                            <img src="{{ asset(result.file.pathname) }}" class="card-img" alt="{{ result.filename }}">
+                        </div>
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="itemDetails">
+                                <h3 class="card-title"><a href="{{ path('app_single', {'id': result.id}) }}">{{ result.title }}</a></h3>
+                                <h5 class="card-subtitle mb-2 text-muted">{{ result.category }}</h5>
+                                <div class="row justify-content-between">
+                                    <p class="col-md-6 small text-muted">{{ result.author.firstName|upper }} {{ result.author.lastName }}</p>
+                                    <p class="col-md-6 small text-muted date">Année du cours : {{ result.yearBook }}</p>
+                                </div>
+                                <p class="content">{{ result.content|truncate(350, true, " ...") }}</p>
+                                <a href="{{ path('app_single', {'id': result.id}) }}" class="btn btn-outline-sevigne">Consulter le document</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
-
-            <div class="itemPagination">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                <div class="itemPagination">
+                    <nav aria-label="Page navigation example">
+                        {% include '@App/public/pagination.html.twig' %}
+                    </nav>
+                </div>
             {% endif %}
         </div>
 
     </div>
-
-
-
 {% endblock %}

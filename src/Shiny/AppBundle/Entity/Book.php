@@ -28,28 +28,26 @@ class Book
 
     /**
      * @var string
-     *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank(message="Merci d'indiquer un titre.")
      */
     private $title;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="content", type="text")
      */
     private $content;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="year_book", type="integer")
+     * @Assert\NotBlank(message="Merci de d'indiquer une année pour ce cours.")
      */
-    private $date;
+    private $yearBook;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="filename", type="string", length=255)
      */
     private $filename;
@@ -57,13 +55,12 @@ class Book
     /**
      * @UploadableField(filename="filename", path="uploads")
      * @Assert\Image(maxWidth="5000", maxHeight="5000")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Vous devez choisir une image")
      */
     private $file;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="pdfname", type="string", length=255)
      */
     private $pdfname;
@@ -80,12 +77,15 @@ class Book
     /**
      * @ORM\ManyToOne(targetEntity="Shiny\AppBundle\Entity\Category", inversedBy="books", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Vous devez d'ajouter une catégorie.")
      */
     private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity="Shiny\AppBundle\Entity\Prof", inversedBy="books", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Vous devez ajouter un auteur.")
+     * @Assert\Length(min="5", minMessage="Catégorie : minimum {{ limit }} caractères.")
      */
     private $author;
 
@@ -98,7 +98,6 @@ class Book
 
     public function __construct()
     {
-        $this->date = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
 
@@ -158,30 +157,6 @@ class Book
     public function getContent()
     {
         return $this->content;
-    }
-
-    /**
-     * Set date
-     *
-     * @param string $date
-     *
-     * @return Book
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return string
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 
     /**
@@ -326,5 +301,21 @@ class Book
     public function setPdffile($pdffile)
     {
         $this->pdffile = $pdffile;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getYearBook()
+    {
+        return $this->yearBook;
+    }
+
+    /**
+     * @param integer $yearBook
+     */
+    public function setYearBook($yearBook)
+    {
+        $this->yearBook = (int)$yearBook;
     }
 }

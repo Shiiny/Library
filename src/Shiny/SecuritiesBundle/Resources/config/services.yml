@@ -1,1 +1,4 @@
 services:
+    securities.mailer:
+        class: Shiny\SecuritiesBundle\Email\Mailer
+        arguments: ["@mailer"]

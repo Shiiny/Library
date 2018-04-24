@@ -1,6 +1,7 @@
 <?php
 
 namespace Shiny\AppBundle\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * UserRepository
@@ -10,7 +11,7 @@ namespace Shiny\AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getLastRegister($limite)
+    public function getLastRegisters($limite)
     {
         $query = $this->createQueryBuilder('u')
             ->orderBy('u.id', 'DESC')
@@ -19,4 +20,13 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    public function findAllWithPaginate($currentPage, $limite)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->setFirstResult(($currentPage -1) * $limite)
+            ->setMaxResults($limite);
+        return new Paginator($query, true);
+    }
+
 }

@@ -3,7 +3,6 @@
 {% block breadcrumb %}<li class="breadcrumb-item active">Tous les cours</li>{% endblock %}
 
 {% block content %}
-    {{ dump(results) }}
     <div class="card mb-3">
             <div class="card-header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <span><i class="fa fa-table"></i> Tous les cours</span>
@@ -16,22 +15,21 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
+                        {% include '@Admin/admin/pagination.html.twig' %}
                         <thead>
                         <tr>
-                            <th>id</th>
                             <th>Titre</th>
                             <th>Professeur</th>
-                            <th>Date</th>
+                            <th>Année du cours</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for result in results %}
                             <tr>
-                                <td>{{ result.id }}</td>
                                 <td><a href="{{ path('admin_edit', {'param': 'book', 'id': result.id}) }}">{{ result.title }}</a></td>
                                 <td>{{ result.author.firstName }}</td>
-                                <td>{{ result.date|date('d/m/Y') }}</td>
+                                <td>{{ result.yearBook }}</td>
                                 <td>
                                     <div class="btn-group mr-2">
                                         <a href="{{  path('admin_edit', {'param': 'book', 'id': result.id}) }}" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
@@ -47,6 +45,6 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer small text-muted">---</div>
-        </div>
+        <div class="card-footer small text-muted">Actualisé le : {{ "now"|localizeddate('long', 'none') }}</div>
+    </div>
 {% endblock %}

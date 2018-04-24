@@ -10,17 +10,33 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class AdminUserController
- * @Security("is_granted('ROLE_SUPER_ADMIN')")
+ * @Security("is_granted('ROLE_ADMIN')")
  */
 class AdminUserController extends Controller
 {
-    public function indexUserAction()
+    public function indexUserAction($page)
     {
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $nbPerPage = 10;
+
+        $users = $this->getDoctrine()->getRepository(User::class)->findAllWithPaginate($page, $nbPerPage);
+
+        $nbPages = ceil(count($users)/$nbPerPage);
+        $paging = [
+            'page' => $page,
+            'nbPages' => $nbPages,
+            'route' => 'admin_user_index',
+            'param' => null
+        ];
+
+        if($page > $nbPages) {
+            throw $this->createNotFoundException("La Page ".$page." n'existe pas.");
+        }
+
 
         $formRole = $this->createForm(UserType::class);
         return $this->render('@Admin/admin/user.index.html.twig', array(
             'users' => $users,
+            'paging' => $paging,
             'formRole'  => $formRole->createView()
         ));
     }

@@ -13,6 +13,14 @@ class AppController extends Controller
 
     public function indexAction()
     {
+        $message = new \Swift_Message(
+            'Nouvelle candidature',
+            'Vous avez reçu une nouvelle candidature.'
+        );
+        $message->addTo('contact@web-shiny.fr')
+            ->addFrom('admin@monsite.com');
+        $this->get('mailer')->send($message);
+
         $em = $this->getDoctrine()->getRepository(Book::class);
         $books = $em->getBooksComplet();
         return $this->render('@App/public/index.html.twig', array('books' => $books));
@@ -20,8 +28,13 @@ class AppController extends Controller
 
     public function singleAction(Book $book)
     {
-        $em = $this->getDoctrine()->getRepository(Book::class);
-        return $this->render('@App/public/single.html.twig', array('book' => $book));
+        $otherBooks = $this->getDoctrine()->getRepository(Book::class)
+            ->getFromAuthor($book->getAuthor()->getNameComplet());
+
+        return $this->render('@App/public/single.html.twig', array(
+            'book' => $book,
+            'otherBooks' => $otherBooks
+        ));
     }
 
     public function searchBarAction()
@@ -30,14 +43,27 @@ class AppController extends Controller
         return $this->render('@App/public/form.search.html.twig', array('formSearch' => $formSearch->createView()));
     }
 
-    public function handleSearchAction(Request $request)
+    public function handleSearchAction(Request $request, $page)
     {
-        $form = $request->request->get('appbundle_search');
-        $search = $form['search'];
+        $search = $request->get('search');
 
-        $req = $this->getDoctrine()->getRepository(Book::class)->getSearch($search);
-        dump($req);
-        return $this->render('@App/public/search.html.twig', array('books' => $req));
+        $nbPerPage = 2;
+        $countBook = $this->getDoctrine()->getRepository(Book::class)->countBySearch($search);
+
+        $resultSearch = $this->getDoctrine()->getRepository(Book::class)->getSearchWithPaginate($search, $page, $nbPerPage);
+
+        $paging = [
+            'page' => $page,
+            'nbPages' => ceil($countBook/$nbPerPage),
+            'count' => $countBook,
+            'route' => 'app_handle_search'
+        ];
+
+        return $this->render('@App/public/search.html.twig', array(
+            'books' => $resultSearch,
+            'paging' => $paging,
+            'search' => $search
+        ));
     }
 
 

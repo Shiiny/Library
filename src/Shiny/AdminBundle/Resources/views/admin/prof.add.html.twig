@@ -28,7 +28,7 @@
             {{ form_rest(form) }}
             {{ form_end(form) }}
         </div>
-        <div class="card-footer small text-muted">Ajouté le {{ 'now'|date("d-m-Y \à h:i") }}</div>
+        <div class="card-footer small text-muted">Actualisé le : {{ "now"|localizeddate('long', 'none') }}</div>
     </div>
 {% endblock %}
 

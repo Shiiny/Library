@@ -20,57 +20,96 @@
 
         {% block content %}
             <div class="row">
-                <div class="col-md-6" id="last-books">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h4><i class="fa fa-table"></i> Derniers cours ajoutés</h4>
-                        </div>
-                        <div class="card-body">
-                            {% for book in books %}
-                                <div class="card book mb-3 ">
-                                    <div class="card-header">
-                                        <h5 class="card-title">{{ book.title }}</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="card-subtitle mb-2 text-muted">{{ book.author.firstName|upper }} {{ book.author.lastName }}</h6>
-                                        <p class="card-text">{{ book.content }}</p>
-                                        <a href="{{ path('admin_edit', {'param': 'book', 'id': book.id }) }}" class="btn btn-primary">Modifier</a>
-                                        <a href="{{ path('app_single', {'param': 'book', 'id': book.id }) }}" class="btn btn-outline-primary">Voir</a>
-                                    </div>
-                                    <div class="card-footer small text-muted">Dernière mise à jour : {{ book.updatedAt|date("d-m-Y \\à h:i") }}</div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-12" id="last-books">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h4><i class="fa fa-table"></i> Derniers cours ajoutés</h4>
                                 </div>
-                            {% endfor %}
+                                <div class="card-body">
+                                    {% for book in books %}
+                                        <div class="card book mb-3 ">
+                                            <div class="card-header">
+                                                <h5 class="card-title">{{ book.title }}</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <h6 class="card-subtitle mb-2 text-muted">{{ book.author.firstName|upper }} {{ book.author.lastName }}</h6>
+                                                <p class="card-text">{{ book.content|truncate(150, true, ' ...') }}</p>
+                                                <a href="{{ path('admin_edit', {'param': 'book', 'id': book.id }) }}" class="btn btn-primary">Modifier</a>
+                                                <a href="{{ path('app_single', {'param': 'book', 'id': book.id }) }}" class="btn btn-outline-primary">Voir</a>
+                                            </div>
+                                            <div class="card-footer small text-muted">Dernière mise à jour : {{ book.updatedAt|time_diff }}</div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="card-footer small text-muted">Actualisé le : {{ "now"|localizeddate('long', 'none') }}</div>
+                            </div>
                         </div>
-                        <div class="card-footer small text-muted">Actualisé le : {{ "now"|date('d-m-Y') }}</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-12" id="last-users">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h4><i class="fa fa-table"></i> Membres récents</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-deck">
+                                    {% for user in users %}
+                                        <div class="card col-lg-6">
+                                            <div class="avatar">
+                                                <img src="{{ asset('img/user.png') }}" alt="">
+                                            </div>
+                                            <div class="info">
+                                                <div class="title">
+                                                    <a href="{{ path('admin_user_index') }}">{{ user.username }}</a>
+                                                </div>
+                                                <p>{{ user.email }}</p>
+                                                <p class="small text-muted">Inscrit le : {{ user.dateRegister|localizeddate('medium') }}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="card-footer small text-muted">Actualisé le : {{ "now"|localizeddate('long', 'none') }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-12" id="last-profs">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h4><i class="fa fa-table"></i> Professeurs récents</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Prénom</th>
+                                                <th>Date d'ajout</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for prof in profs %}
+                                                <tr>
+                                                    <td>{{ prof.firstName }}</td>
+                                                    <td>{{ prof.lastName }}</td>
+                                                    <td>{{ prof.updatedAt|date('d-m-Y') }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card-footer small text-muted">Actualisé le : {{ "now"|localizeddate('long', 'none') }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-6" id="last-users">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h4><i class="fa fa-table"></i> Membres récents</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-deck">
-                            {% for user in users %}
-                                <div class="card col-lg-6">
-                                    <div class="avatar">
-                                        <img src="{{ asset('img/user.png') }}" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <div class="title">
-                                            <a href="{{ path('admin_user_index') }}">{{ user.username }}</a>
-                                        </div>
-                                        <p>{{ user.email }}</p>
-                                        <p class="small text-muted">Inscrit le : {{ user.dateRegister|date('d M Y') }}</p>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                            </div>
-                        </div>
-                        <div class="card-footer small text-muted">Actualisé le : {{ "now"|date('d-m-Y') }}</div>
-                    </div>
-                </div>
 
             </div>
         {% endblock %}

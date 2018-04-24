@@ -1,24 +1,26 @@
 <div class="well">
     {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-    {# Les erreurs générales du formulaire. #}
     {{ form_errors(form) }}
 
     <div class="form-group">
         {{ form_label(form.title, "Titre du cours") }}
-        {{ form_errors(form.title) }}
         {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
     </div>
 
     <div id="prof" class="form-group">
         <h4>Professeur du cours</h4>
-        {{ form_label(form.author, "Nom") }}
         {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+        <button type="button" id="newProf">Nouveau professeur</button>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.yearBook, "Année du cours") }}
+        {{ form_widget(form.yearBook, {'attr': {'class': 'form-control'}}) }}
     </div>
 
     <div class="form-group">
         {{ form_label(form.content, "Détails du cours") }}
-        {{ form_errors(form.content) }}
         {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
     </div>
 
@@ -37,7 +39,6 @@
                 </div>
             {% endif %}
             <div class="col-md-8">
-                {{ form_errors(form.file) }}
                 {{ form_widget(form.file) }}
             </div>
         </div>
@@ -52,7 +53,6 @@
                 </div>
             {% endif %}
             <div class="col-md-8">
-                {{ form_errors(form.pdffile) }}
                 {{ form_widget(form.pdffile) }}
             </div>
         </div>

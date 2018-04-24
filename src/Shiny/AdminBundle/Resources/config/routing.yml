@@ -2,9 +2,29 @@ admin_homepage:
     path:     /
     defaults: { _controller: AdminBundle:Admin:home }
 
+admin_user_index:
+    path:     /user/{page}
+    defaults: { _controller: AdminBundle:AdminUser:indexUser, page: 1 }
+    requirements:
+        page: \d+
+
+admin_user_delete:
+    path:     /user/delete/{id}
+    defaults: { _controller: AdminBundle:AdminUser:deleteUser}
+    requirements:
+        id: \d+
+
+admin_user_role:
+    path:     /user/role/{id}
+    defaults: { _controller: AdminBundle:AdminUser:roleUser}
+    requirements:
+        id: \d+
+
 admin_index:
-    path:     /{param}
-    defaults: { _controller: AdminBundle:AdminContent:index }
+    path:     /{param}/{page}
+    defaults: { _controller: AdminBundle:AdminContent:index, page: 1 }
+    requirements:
+        page: \d+
 
 admin_add:
     path:     /{param}/add
@@ -22,18 +42,3 @@ admin_delete:
     requirements:
         id: \d+
 
-admin_user_index:
-    path:     /user/
-    defaults: { _controller: AdminBundle:AdminUser:indexUser }
-
-admin_user_delete:
-    path:     /user/delete/{id}
-    defaults: { _controller: AdminBundle:AdminUser:deleteUser}
-    requirements:
-        id: \d+
-
-admin_user_role:
-    path:     /user/role/{id}
-    defaults: { _controller: AdminBundle:AdminUser:roleUser}
-    requirements:
-        id: \d+

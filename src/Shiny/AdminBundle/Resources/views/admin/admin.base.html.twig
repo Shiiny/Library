@@ -55,13 +55,13 @@
                                 <a href="{{ path('admin_index', {'param': 'prof'}) }}">Liste des Professeurs</a>
                             </li>
                             <li>
-                                <a href="">Ajouter un professeur</a>
+                                <a href="{{ path('admin_add', {'param': 'prof'}) }}">Ajouter un professeur</a>
                             </li>
                         </ul>
 
                     </li>
 
-                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="User">
                         <a class="nav-link" href="{{ path('admin_user_index') }}">
                             <i class="fas fa-user"></i>

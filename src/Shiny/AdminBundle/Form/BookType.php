@@ -5,7 +5,9 @@ use Doctrine\ORM\EntityManager;
 use Shiny\AdminBundle\Form\Listener\AddAuthorListerner;
 use Shiny\AdminBundle\Form\Listener\AddCategoryListener;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -29,6 +31,7 @@ class BookType extends AbstractType
                 'class'         => 'Shiny\AppBundle\Entity\Prof',
                 'placeholder'    => 'Sélectionnez un professeur',
             ))
+            ->add('yearBook',    IntegerType::class)
             ->add('content',        TextareaType::class)
             ->add('category',     EntityType::class, array(
                 'class'           => 'Shiny\AppBundle\Entity\Category',

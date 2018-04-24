@@ -4,6 +4,7 @@ namespace Shiny\AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -24,8 +25,9 @@ class Category
 
     /**
      * @var string
-     *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="Vous devez renseigner un nom de catégorie.")
+     * @Assert\Length(min="5", minMessage="Catégorie : minimum {{ limit }} caractères")
      */
     private $name;
 

@@ -5,6 +5,7 @@ namespace Shiny\AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchType extends AbstractType
 {
@@ -13,8 +14,10 @@ class SearchType extends AbstractType
         $builder->add('search', TextType::class);
     }
 
-    public function getBlockPrefix()
+    public function configureOptions(OptionsResolver $resolver)
     {
-        return 'appbundle_search';
+        $resolver->setDefaults(array(
+            'csrf_protection' => false,
+        ));
     }
 }
