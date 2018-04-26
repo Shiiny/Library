@@ -1,0 +1,19 @@
+{% extends '@Securities/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Bonjour, {{ user.username }}</h1>
+                <p>Bienvenue sur votre page de profil.</p>
+                <p>Date d'inscription : {{ user.dateRegister|localizeddate('long', 'none') }}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="{{ path('security_change_password') }}">Changer votre mot de passe</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

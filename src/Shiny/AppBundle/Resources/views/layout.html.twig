@@ -13,29 +13,31 @@
     <body>
         <header class="topbar">
             <nav class="site-header sticky-top py-1">
-                <div class="container menu d-flex flex-column flex-md-row justify-content-between">
+                <div class="container menu d-flex flex-column flex-md-row justify-content-between align-items-center">
                     <a class="py-2" href="{{ path('app_homepage') }}">
                         <img id="logo" src="{{ asset('/img/Logo.png') }}" alt="Logo Collège Sévigné">
                     </a>
-                    {% for label, messages in app.flashes() %}
-                        {% for message in messages %}
-                            <div class="alert alert-{{ label }}" role="alert">
-                                <p class="message">Message flash : {{ message }}</p>
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a class="py-2 d-none d-md-inline-block" href="{{ path('admin_homepage') }}">Admin</a>
-                    {% endif %}
-                    {% if is_granted('ROLE_USER') %}
-                         <a class="py-2 d-none d-md-inline-block" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        <a class="py-2 d-none d-md-inline-block" href="{{ path('admin_homepage') }}">Tableau de bord</a>
+                        <a class="py-2 d-none d-md-inline-block" href="{{ path('security_profile') }}">Bienvenue {{ app.user.username|upper }}</a>
+                        <a class="py-2 d-none d-md-inline-block" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <a class="py-2 d-none d-md-inline-block" href="{{ path('security_profile') }}">Bienvenue {{ app.user.username|upper }}</a>
+                        <a class="py-2 d-none d-md-inline-block" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     {% else %}
-                         <a class="py-2 d-none d-md-inline-block" href="{{ path('security_login') }}"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+                        <a class="py-2 d-none d-md-inline-block" href="{{ path('security_login') }}"><i class="fas fa-sign-in-alt"></i> Connexion</a>
                     {% endif %}
                 </div>
             </nav>
         </header>
+        {% for label, messages in app.flashes() %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}" role="alert">
+                    <p class="message">Message flash : {{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
 
         {% block body %}
         {% endblock %}

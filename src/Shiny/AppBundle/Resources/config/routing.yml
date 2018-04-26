@@ -8,6 +8,12 @@ app_single:
     requirements:
         id: \d+
 
+app_list:
+    path:     /list/{page}
+    defaults: { _controller: AppBundle:App:list, page: 1 }
+    requirements:
+        page: \d+
+
 app_handle_search:
     path:     /search/{page}
     defaults: { _controller: AppBundle:App:handleSearch, page: 1 }

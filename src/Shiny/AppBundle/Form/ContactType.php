@@ -22,11 +22,8 @@ class ContactType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new NotBlank(array("message" => "Merci de renseigner votre nom")),
-                    new Length(array(
-                        'min' => 2,
-                        'max' => 50,
-                        'minMessage' => 'Minimum {{ limit }} caractères',
-                        'maxMessage' => 'Maximum {{ limit }} caractères',
+                    new Length(array('min' => 3,
+                        'minMessage' => 'Minimum {{ limit }} caractères'
                     ))
                 ]
             ))

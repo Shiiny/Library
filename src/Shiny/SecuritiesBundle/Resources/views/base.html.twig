@@ -2,11 +2,11 @@
 {% block body %}
 <div class="container">
     <div class="sign row justify-content-md-center">
-        <div class="col-md-6">
+        <div class="col-md-9 col-lg-6">
             <div class="panel panel-login">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-md-12">
                             {% block login_check %}
                             {% endblock %}
                         </div>
@@ -19,7 +19,7 @@
                             <a href="{{ path('security_login') }}" {% block actif_login %}{% endblock %} id="login-form-link"><div class="login">CONNEXION</div></a>
                         </div>
                         <div class="col-md-6 tabs">
-                            <a href="{{ path('user_register') }}" {% block actif_register %}{% endblock %} id="register-form-link"><div class="register">INSCRIPTION</div></a>
+                            <a href="{{ path('security_register') }}" {% block actif_register %}{% endblock %} id="register-form-link"><div class="register">INSCRIPTION</div></a>
                         </div>
 
                     </div>

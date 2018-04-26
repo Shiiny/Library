@@ -6,6 +6,23 @@ security_logout:
     path:     /logout
     defaults: { _controller: SecuritiesBundle:Security:logout }
 
-user_register:
+security_register:
     path:     /register
     defaults: { _controller: SecuritiesBundle:Security:register }
+
+security_reset:
+    path:     /reset
+    defaults: { _controller: SecuritiesBundle:Security:resetPassword }
+
+security_change_password:
+    path:     /change
+    defaults: { _controller: SecuritiesBundle:Security:changePassword }
+
+security_profile:
+    path:     /profile
+    defaults: { _controller: SecuritiesBundle:Security:profile }
+
+security_activate:
+    path:     /activate
+    defaults: { _controller: SecuritiesBundle:Security:activate }
+

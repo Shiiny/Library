@@ -11,7 +11,7 @@
 
         {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
         {% for p in range(max(paging.page-4, 1), min(paging.page+4, paging.nbPages)) %}
-            <li {% if p == paging.page %}class="page-item active"{% else %}class="page-item"{% endif %}>
+            <li {% if p == paging.page %}class="page-item active" {% else %}class="page-item" {% endif %}>
                 <a href="{{ path(paging.route, {'search': search, 'page': p}) }}" class="page-link">
                     {{ p }}
                 </a>

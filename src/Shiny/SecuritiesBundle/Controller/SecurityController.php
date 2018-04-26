@@ -3,10 +3,13 @@
 namespace Shiny\SecuritiesBundle\Controller;
 
 use Shiny\SecuritiesBundle\Entity\User;
+use Shiny\SecuritiesBundle\Form\ChangePasswordType;
 use Shiny\SecuritiesBundle\Form\LoginType;
+use Shiny\SecuritiesBundle\Form\ResetType;
 use Shiny\SecuritiesBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class SecurityController extends Controller
 {
@@ -39,11 +42,13 @@ class SecurityController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            dump($user->getPlainPassword());
             // Encodage du plainpassword
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
             // Par defaut l'utilisateur aura toujours le rôle ROLE_USER
             $user->setRoles(['ROLE_USER']);
+            $user->setIsActive(false);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -51,39 +56,161 @@ class SecurityController extends Controller
 
             $this->sendConfirmationEmail($user);
 
-            $this->addFlash('success', "Le compte ".$user->getEmail()." a bien été crée");
-            return $this->get('security.authentication.guard_handler')
-                ->authenticateUserAndHandleSuccess(
-                    $user, $request, $this->get('security.login_form_authenticator'), 'main'
-                );
+            $this->addFlash('info', "Un e-mail vous a été envoyé pour le compte ".$user->getEmail());
+            return $this->redirectToRoute('security_login');
         }
         return $this->render('@Securities/register.html.twig', array(
             'form' => $form->createView()
         ));
     }
 
-    private function sendConfirmationEmail(User $user)
+    public function resetPasswordAction(Request $request)
     {
-        //$token = $user->getEmailConfirmationToken();
-        $subject = 'Confirmation de votre compte';
-        $email = $user->getEmail();
+        $passwordEncoder = $this->get('security.password_encoder');
+        $form = $this->createForm(ResetType::class);
 
-        $href = "www.mysymfonyproject.com/app_dev.php/confirm?token=test";// . $token;
+        $form->handleRequest($request);
 
-        $message = \Swift_Message::newInstance()
+        if ($form->isSubmitted() && $form->isValid()) {
+            // on récupère toute la requete 'reset'
+            $param = $request->request->all()['reset'];
+            if (!array_key_exists("email", $param)) {
+                throw new \Exception("Pas d'email envoyé");
+            }
+            // on vérifie que cette email existe dans la db
+            $email = $param['email'];
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository(User::class)->findOneBy(array('email' => $email));
+
+            if ($user === null) {
+                $this->addFlash('info', "Aucun utilisateur pour cette adresse mail");
+                return $this->redirectToRoute('security_register');
+            }
+            // on crée un nouveau mdp unique que l'on encode et enregistre pour l'utilisateur
+            $password = uniqid();
+            $passwordCrypt = $passwordEncoder->encodePassword($user, $password);
+            $user->setPassword($passwordCrypt);
+            $em->persist($user);
+            $em->flush();
+            // on lui renvoi par mail ses identifiants et redirige vers login
+            $this->sendResetEmail($user, $password);
+
+            $this->addFlash('info', "Un e-mail vous a été envoyé");
+            return $this->redirectToRoute('security_login');
+        }
+
+        return $this->render('@Securities/reset.html.twig', array('form' => $form->createView()));
+    }
+
+    private function sendResetEmail(User $user, $password)
+    {
+        $subject = 'Réinitialisation de votre compte';
+        $userMail = $user->getEmail();
+
+        $message = (new \Swift_Message())
             ->setSubject($subject)
-            ->setFrom('moi@gmail.com')
-            ->setTo( $email )
+            ->setFrom('sevigne@gmail.com')
+            ->setTo($userMail)
             ->setBody(
-                $this->renderView(
-                    '@Securities/Emails/confirm.html.twig',
-                    array('href' => $href)
+                $this->renderView('@Securities/Emails/resetmdp.html.twig', array(
+                    'user' => $user,
+                    'password' => $password)
                 ),
                 'text/html'
             );
-
         $this->get('mailer')->send($message);
+    }
 
-        return true;
+    public function profileAction(Request $request, SessionInterface $session)
+    {
+        $user = $this->getUser();
+
+
+        return $this->render('@Securities/profile.html.twig', array(
+            'user' => $user
+        ));
+    }
+
+    public function changePasswordAction(Request $request)
+    {
+        $form = $this->createForm(ChangePasswordType::class);
+        $passwordEncoder = $this->get('security.password_encoder');
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // on récupère toute la requete 'change_password'
+            $data = $request->request->all()['change_password'];
+
+            // on vérifie l'existence des champs nécessaires
+            if (!array_key_exists('currentPassword', $data) || !array_key_exists('newPassword', $data)) {
+                return array('error' => "Merci de remplir tous les champs");
+            }
+            $currentPassword = $data['currentPassword'];
+            $newPassword = $data['newPassword'];
+
+            $em = $this->getDoctrine()->getManager();
+            // on récupère l'utilsateur actuel
+            $user = $this->getUser();
+
+            // on vérifie le mdp courent et le mdp en db de l'utilisateur ainsi que la correspondance des mdp
+            if (!password_verify($currentPassword, $user->getPassword())) {
+                return array('error' => "Le mot de passe actuel n'est pas bon");
+            }
+            elseif ($newPassword['first'] != $newPassword['second']) {
+                return array('error' => "Les deux nouveaux mot de passe ne sont pas identiques");
+            }
+
+            // on encode le nouveau mdp et on enregistre puis on redirige
+            $passwordCrypt = $passwordEncoder->encodePassword($user, $newPassword['first']);
+            $user->setPassword($passwordCrypt);
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', "Votre mot de passe a été changé");
+            return $this->redirectToRoute('security_profile');
+        }
+
+        return $this->render('@Securities/change-password.html.twig', array(
+           'form' => $form->createView()
+        ));
+    }
+
+    private function sendConfirmationEmail(User $user)
+    {
+        $subject = 'Activation de votre compte';
+        $userMail = $user->getEmail();
+
+        $message = (new \Swift_Message())
+            ->setSubject($subject)
+            ->setFrom('sevigne@gmail.com')
+            ->setTo($userMail)
+            ->setBody(
+                $this->renderView('@Securities/Emails/active.html.twig', array(
+                        'user' => $user,
+                        )),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+    }
+
+    public function activateAction(Request $request)
+    {
+        $token = $request->query->get('token');
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->findOneBy(array('token' => $token));
+
+        if ($user !== null) {
+            $user->setIsActive(true);
+            $user->setToken(null);
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', "Votre compte est désormais activé");
+            return $this->get('security.authentication.guard_handler')
+                ->authenticateUserAndHandleSuccess(
+                    $user, $request, $this->get('security.login_form_authenticator'), 'main'
+                );
+        }
+        return false;
     }
 }

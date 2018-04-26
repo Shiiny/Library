@@ -1,25 +1,27 @@
 {% extends "@App/layout.html.twig" %}
 
 {% block body %}
-    <div class="header">
+    <div class="header d-flex justify-content-center align-items-center">
         {% block app_img %}
             <img id="front_blue" src="{{ asset('/img/front_blue.jpg') }}" alt="accueil">
         {% endblock %}
-        <div class="col-md-5 contenu">
+        <div class="col-lg-5 col-md-7 contenu">
             <div class="media">
-                <img class="mr-3" src="{{ asset('/img/picto_CS.png') }}" alt="picto Collège Sévigné">
-                <div class="media-body">
+                <div class="col-3">
+                    <img class="picto" src="{{ asset('/img/picto_CS.png') }}" alt="picto Collège Sévigné">
+                </div>
+                <div class="col-9 pl-0">
                     <h1 class="title_site">Bibliothèque Numérique</h1>
                 </div>
             </div>
-            {{ render(controller('AppBundle:App:searchBar')) }}
+            {{ include('@App/public/form.search.html.twig') }}
         </div>
     </div>
 
 
     <div class="midbar">
         <nav class="site-header sub sticky-top py-1">
-            <div class="container menu d-flex flex-column flex-md-row justify-content-between">
+            <div class="container menu d-flex flex-column flex-md-row justify-content-around">
                 <a class="py-2 d-none d-md-inline-block" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> Accueil</a>
                 <a class="py-2 d-none d-md-inline-block" href="http://www.collegesevigne.fr">Site Agrégation</a>
                 <a class="py-2 d-none d-md-inline-block" href="#">Nouveautés</a>
@@ -41,8 +43,8 @@
                     <h3>Bibliothèque Numérique</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
-                <div class="links">
-                    <ul>
+                <div class="links col-md-2">
+                    <ul class="facet-list">
                         <li><a href="{{ path('app_contact') }}">Contact</a></li>
                         <li>Mentions légales</li>
                         <li>Liens</li>

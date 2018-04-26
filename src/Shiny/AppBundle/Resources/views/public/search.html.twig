@@ -2,36 +2,55 @@
 
 {% block app_body %}
     <div class="row">
-        <div class="sidebar col-sm-4 col-xs-12">
-            <h3>Affinez votre recherche</h3>
-
-            <div class="sidebarInner sidebarCategory">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Catégories</div>
-                    <div class="panel-body">
-                        <ul class="categoryList">
-                            {% for item in books %}
-                                <li><a href="#">{{ item.category.name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+        <div class="sidebar col-md-4 mb-4">
+            <div class="panel panel-front">
+                <div class="panel-heading">
+                    <h3>Affinez votre recherche</h3>
                 </div>
-            </div>
-            <div class="sidebarInner sidebarCategory">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Professeurs</div>
-                    <div class="panel-body">
-                        <ul class="categoryList">
-                            {% for prof in books %}
-                                <li><a href="#">{{ prof.author.firstName|upper }} {{ prof.author.lastName }}</a></li>
-                            {% endfor %}
-                        </ul>
+                <div class="panel-body">
+                    <div class="accordion" id="facet_container">
+                        <div id="accordion01" class="panel-group categories">
+                            <a href="#collapse01" data-toggle="collapse" data-parent="facet_container" title="Catégories" class="accordion-toggle" aria-selected="true" aria-expanded="true" aria-controls="collapse01">
+                                <div class="panel panel-layout">
+                                    <div class="panel-heading">
+                                        <h4>CATEGORIES <i class="fas fa-chevron-up pull-right"></i></h4>
+                                    </div>
+                                </div>
+                            </a>
+                            <div id="collapse01" class="panel-collapse facet-collapse in" aria-hidden="false" tabindex="0">
+                                <ul class="facet-list">
+                                    {% for categorie in categories %}
+                                    <li>
+                                        <a href="{{ path('app_list', {'search': categorie }) }}" title="{{ categorie }}">{{ categorie }}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="accordion02" class="panel-group profs">
+                            <a href="#collapse02" data-toggle="collapse" data-parent="facet_container" title="Professeurs" class="accordion-toggle" aria-selected="true" aria-expanded="true" aria-controls="collapse02">
+                                <div class="panel panel-layout">
+                                    <div class="panel-heading">
+                                        <h4>PROFESSEURS <i class="fas fa-chevron-up pull-right"></i></h4>
+                                    </div>
+                                </div>
+                            </a>
+                            <div id="collapse02" class="panel-collapse facet-collapse in" aria-hidden="false">
+                                <ul class="facet-list">
+                                    {% for profName in profsName %}
+                                    <li>
+                                        <a href="{{ path('app_list', {'search': profName }) }}" title="{{ profName }}">{{ profName }}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="maincontent col-sm-8 col-xs-12">
+        <div class="maincontent col-md-8">
             <h2>Résultats de la recherche : "{{ search }}"</h2>
             {% if books is empty %}
                 <p>Pas de réultat</p>
@@ -50,16 +69,16 @@
             {% for result in books %}
                 <div class="card mb-3 box-shadow">
                     <div class="card-body row">
-                        <div class="col-sm-4 col-xs-12">
+                        <div class="col-sm-4 mb-3">
                             <img src="{{ asset(result.file.pathname) }}" class="card-img" alt="{{ result.filename }}">
                         </div>
-                        <div class="col-sm-8 col-xs-12">
+                        <div class="col-sm-8">
                             <div class="itemDetails">
                                 <h3 class="card-title"><a href="{{ path('app_single', {'id': result.id}) }}">{{ result.title }}</a></h3>
                                 <h5 class="card-subtitle mb-2 text-muted">{{ result.category }}</h5>
                                 <div class="row justify-content-between">
-                                    <p class="col-md-6 small text-muted">{{ result.author.firstName|upper }} {{ result.author.lastName }}</p>
-                                    <p class="col-md-6 small text-muted date">Année du cours : {{ result.yearBook }}</p>
+                                    <p class="col-6 small text-muted">Professeur : {{ result.author.firstName|upper }} {{ result.author.lastName }}</p>
+                                    <p class="col-6 small text-muted date">Année : {{ result.yearBook }}</p>
                                 </div>
                                 <p class="content">{{ result.content|truncate(350, true, " ...") }}</p>
                                 <a href="{{ path('app_single', {'id': result.id}) }}" class="btn btn-outline-sevigne">Consulter le document</a>

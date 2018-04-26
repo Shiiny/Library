@@ -1,0 +1,12 @@
+<div>
+    <h1>Bienvenue sur le site de la bibliothèque numérique de Sévigné</h1>
+    <p>Bonjour {{ user.username }}</p>
+    <br/>
+    <p>Vous venez du vous s'inscrire sur le site de la bibliothèque numérique du Collège Sévigné</p>
+    <p>Afin de valider votre inscription cliquez sur le lien ci-dessous</p>
+    <a href="http://127.0.0.1:8000/activate?token={{ user.token }}">http://127.0.0.1:8000/activate?token={{ user.token }}</a>
+</div>
+<div>
+    <hr>
+    <p>Vous recevez cet email car vous êtes inscrit sur le site Bibliothèque numérique du Collège Sévigné.</p>
+</div>

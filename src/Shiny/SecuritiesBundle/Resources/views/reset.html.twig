@@ -1,0 +1,26 @@
+{% extends '@Securities/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="sign row justify-content-md-center">
+            <div class="col-md-9 col-lg-6">
+                <div class="panel panel-login">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Mot de passe oublié</h2>
+                                {{ form_start(form) }}
+                                {{ form_rest(form) }}
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-outline-sevigne" value="Envoyer">
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

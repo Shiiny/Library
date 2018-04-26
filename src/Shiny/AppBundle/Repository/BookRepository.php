@@ -71,13 +71,14 @@ class BookRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin('b.author', 'a')
             ->addSelect('a')
             ->where(
-                'b.title LIKE :variable 
-                OR c.name LIKE :variable 
-                OR a.firstName LIKE :variable 
-                OR a.lastName LIKE :variable 
-                OR b.yearBook LIKE :variable  
-                OR b.content LIKE :variable ')
-            ->setParameter('variable', '%'.$search.'%');
+                'b.title LIKE :search 
+                OR c.name LIKE :search 
+                OR a.firstName LIKE :search 
+                OR a.lastName LIKE :search 
+                OR a.nameComplet LIKE :search
+                OR b.yearBook LIKE :search  
+                OR b.content LIKE :search ')
+            ->setParameter('search', '%'.$search.'%');
 
         return $query;
     }
@@ -98,5 +99,14 @@ class BookRepository extends \Doctrine\ORM\EntityRepository
             ->setFirstResult(($currentPage -1) * $limite)
             ->setMaxResults($limite);
         return new Paginator($query, true);
+    }
+
+    public function findBySearch($search)
+    {
+        $query = $this->getSearch($search)
+            ->orderBy('b.updatedAt', 'DESC')
+            ->getQuery();
+
+        return $query->getResult();
     }
 }

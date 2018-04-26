@@ -1,0 +1,48 @@
+{% extends '@App/public/base.html.twig' %}
+
+{% block app_body %}
+    <div class="maincontent col-sm-9 col-xs-12">
+        <h2>Liste complète : {{ search }}</h2>
+        {% if books is empty %}
+            <p>Pas de réultat</p>
+        {% else %}
+
+            <div class="resultBar">
+                <div class="list-inline">
+                    <div class="itemPagination">
+                        <nav aria-label="Page navigation example">
+                            {% include '@App/public/pagination.html.twig' %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            {% for book in books %}
+                <div class="card mb-3 box-shadow">
+                    <div class="card-body row">
+                        <div class="col-sm-4 col-xs-12">
+                            <img src="{{ asset(book.file.pathname) }}" class="card-img" alt="{{ book.filename }}">
+                        </div>
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="itemDetails">
+                                <h3 class="card-title"><a href="{{ path('app_single', {'id': book.id}) }}">{{ book.title }}</a></h3>
+                                <h5 class="card-subtitle mb-2 text-muted">{{ book.category }}</h5>
+                                <div class="row justify-content-between">
+                                    <p class="col-md-6 small text-muted">{{ book.author.firstName|upper }} {{ book.author.lastName }}</p>
+                                    <p class="col-md-6 small text-muted date">Année du cours : {{ book.yearBook }}</p>
+                                </div>
+                                <p class="content">{{ book.content|truncate(350, true, " ...") }}</p>
+                                <a href="{{ path('app_single', {'id': book.id}) }}" class="btn btn-outline-sevigne">Consulter le document</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="itemPagination">
+                <nav aria-label="Page navigation example">
+                    {% include '@App/public/pagination.html.twig' %}
+                </nav>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

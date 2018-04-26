@@ -18,7 +18,11 @@
             {{ form_widget(form._password, {'attr': {'class': 'form-control'}}) }}
         </div>
 
-    <div class="col-xs-6 form-group pull-right">
+        <div class="form-group">
+            <a href="{{ path('security_reset') }}" class="btn btn-outline-sevigne mt-3">Mot de passe oublié</a>
+        </div>
+
+    <div class="col-md-6 form-group pull-right">
         <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Se connecter">
     </div>
     {{ form_end(form) }}

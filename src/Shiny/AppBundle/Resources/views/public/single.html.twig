@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row principal">
 
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <img class="img-fluid" src="{{ asset(book.file.pathname) }}" alt="{{ book.filename }}">
             </div>
             <div class="col-md-8 card">
@@ -12,8 +12,12 @@
                     <h1 class="my-3">{{ book.title }}</h1>
                     <h4 class="my-3">{{ book.category }}</h4>
                     <div class="row justify-content-between">
-                        <p class="col-md-6 small text-muted">Professeur : {{ book.author.firstName|upper }} {{ book.author.lastName }}</p>
-                        <p class="col-md-4 small text-muted date"><i class="far fa-calendar-alt"></i> Année : {{ book.yearBook }}</p>
+                        <div class="col-7">
+                            <p class="small text-muted">Professeur : {{ book.author.firstName|upper }} {{ book.author.lastName }}</p>
+                        </div>
+                        <div class="col-5">
+                            <p class="small text-muted date"><i class="far fa-calendar-alt"></i> Année : {{ book.yearBook }}</p>
+                        </div>
                     </div>
                     <p class="content">{{ book.content }}</p>
                     <nav>
@@ -28,7 +32,11 @@
                         </div>
                         <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <p>Retrouvez tous les fichiers attachés à ce cours :</p>
-                            <a class="btn btn-outline-sevigne" href="{{ asset(book.pdffile.pathname) }}" target="_blank">Télécharger</a>
+                            {% if is_granted('ROLE_USER') %}
+                                <a class="btn btn-outline-sevigne" href="{{ asset(book.pdffile.pathname) }}" target="_blank">Télécharger</a>
+                            {% else %}
+                                <div class="alert alert-info">Vous devez être connecté pour pouvoir voir ce cours</div>
+                            {% endif %}
                         </div>
                     </div>
 

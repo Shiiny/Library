@@ -1,0 +1,14 @@
+{% block body %}
+    <div>
+        <p>Cet email a été envoyé par : <{{ data.email }}>,</p>
+        <p>le {{ "now" | date("Y-m-d H:i") }}</p>
+    </div>
+    <div>
+        <h3>Objet : {{ data.subject }}</h3>
+        <p>{{ data.name }}</p>
+        <p>{{ data.message }}</p>
+    </div>
+    <div>
+        <p>Formulaire de contact du site Bibliothèque numérique du Collège Sévigné.</p>
+    </div>
+{% endblock %}
