@@ -17,11 +17,10 @@
                     <a class="py-2" href="{{ path('app_homepage') }}">
                         <img id="logo" src="{{ asset('/img/Logo.png') }}" alt="Logo Collège Sévigné">
                     </a>
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_USER') %}
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a class="py-2 d-none d-md-inline-block" href="{{ path('admin_homepage') }}">Tableau de bord</a>
-                        <a class="py-2 d-none d-md-inline-block" href="{{ path('security_profile') }}">Bienvenue {{ app.user.username|upper }}</a>
-                        <a class="py-2 d-none d-md-inline-block" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-                    {% elseif is_granted('ROLE_USER') %}
+                        {% endif %}
                         <a class="py-2 d-none d-md-inline-block" href="{{ path('security_profile') }}">Bienvenue {{ app.user.username|upper }}</a>
                         <a class="py-2 d-none d-md-inline-block" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     {% else %}
@@ -32,8 +31,10 @@
         </header>
         {% for label, messages in app.flashes() %}
             {% for message in messages %}
-                <div class="alert alert-{{ label }}" role="alert">
-                    <p class="message">Message flash : {{ message }}</p>
+                <div class="container">
+                    <div id="flash" class="alert alert-{{ label }} mt-3" role="alert">
+                        <p class="message">Message flash : {{ message }}</p>
+                    </div>
                 </div>
             {% endfor %}
         {% endfor %}

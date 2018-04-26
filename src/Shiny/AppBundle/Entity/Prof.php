@@ -36,7 +36,7 @@ class Prof
     private $lastName;
 
     /**
-     * @ORM\OneToMany(targetEntity="Shiny\AppBundle\Entity\Book", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="Shiny\AppBundle\Entity\Book", mappedBy="author", cascade={"remove"})
      */
     private $books;
 

@@ -32,7 +32,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Shiny\AppBundle\Entity\Book", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Shiny\AppBundle\Entity\Book", mappedBy="category", cascade={"remove"})
      */
     private $books;
 

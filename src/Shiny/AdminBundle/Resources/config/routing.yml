@@ -21,7 +21,7 @@ admin_user_role:
         id: \d+
 
 admin_index:
-    path:     /{param}/{page}
+    path:     /{param}/{page}/
     defaults: { _controller: AdminBundle:AdminContent:index, page: 1 }
     requirements:
         page: \d+

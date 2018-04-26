@@ -3,6 +3,8 @@
 namespace Shiny\AppBundle\Controller;
 
 use Shiny\AppBundle\Entity\Book;
+use Shiny\AppBundle\Entity\Category;
+use Shiny\AppBundle\Entity\Prof;
 use Shiny\AppBundle\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +17,6 @@ class AppController extends Controller
         $em = $this->getDoctrine()->getRepository(Book::class);
         $books = $em->getBooksComplet();
         return $this->render('@App/public/index.html.twig', array('books' => $books));
-
     }
 
     public function listAction(Request $request, $page)
@@ -40,8 +41,10 @@ class AppController extends Controller
 
     public function singleAction(Book $book)
     {
-        $otherBooks = $this->getDoctrine()->getRepository(Book::class)
-            ->getFromAuthor($book->getAuthor()->getNameComplet());
+        if ($book->getAuthor() !== null) {
+            $otherBooks = $this->getDoctrine()->getRepository(Book::class)
+                ->getFromAuthor($book->getAuthor()->getNameComplet());
+        }
 
         return $this->render('@App/public/single.html.twig', array(
             'book' => $book,
@@ -69,8 +72,8 @@ class AppController extends Controller
 
         $paging = [
             'page' => $page,
-            'nbPages' => ceil($countBook/$nbPerPage),
-            'count' => $countBook,
+            'nbPages' => ceil(count($resultSearch)/$nbPerPage),
+            'count' => count($resultSearch),
             'route' => 'app_handle_search'
         ];
 
@@ -114,5 +117,33 @@ class AppController extends Controller
                 'text/html'
             );
         $this->get('mailer')->send($message);
+    }
+
+    public function legaleAction()
+    {
+        return $this->render('@App/public/legale.html.twig');
+    }
+
+    public function catalogueAction($page)
+    {
+        $nbPerPage = 5;
+        $allBooks = $this->getDoctrine()->getRepository(Book::class)
+            ->findAllBooksWithPaginate($page, $nbPerPage);
+        $allProfs = $this->getDoctrine()->getRepository(Prof::class)->findAll();
+        $allCategories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+        $paging = [
+            'page' => $page,
+            'count' => count($allBooks),
+            'nbPages' => ceil(count($allBooks)/$nbPerPage),
+            'route' => 'app_catalogue'
+        ];
+
+        return $this->render('@App/public/catalogue.html.twig', array(
+            'allBooks' => $allBooks,
+            'allProfs' => $allProfs,
+            'allCategories' => $allCategories,
+            'paging' => $paging
+        ));
     }
 }

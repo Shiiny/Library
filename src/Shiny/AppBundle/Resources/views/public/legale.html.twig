@@ -1,0 +1,38 @@
+{% extends "@App/public/base.html.twig" %}
+{% block app_body %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="heading">
+            <h3>Éditeur le Collège Sévigne</h3>
+            <p>39 rue Henri Barbusse<br />75005 Paris</p>
+        </div>
+        <div class="row d-flex flex-column flex-md-row justify-content-between">
+            <div class="col-6">
+                <h3>Directrice générale</h3>
+                <p>Mme Soizic Charpentier</p>
+            </div>
+            <div class="col-6">
+                <h3>Directeur de l'enseignement supérieur</h3>
+                <p>M. Jean-Pierre De Giorgio</p>
+            </div>
+        </div>
+        <h3>Mission du site</h3>
+        <p>Plateforme de téléchargement de l'archive des cours du Collège Sévigné, en ligne</p>
+        <h4>Hébergement</h4>
+        <p>Société ...<br />Pour le moment, nul part</p>
+        <h4>Conception graphique :</h4>
+        <p>Anthony Oury</p>
+        <h4>Conception technique :</h4>
+        <p>Anthony Oury</p>
+        <p>Site réalisé avec le framework Symfony</p>
+        <h3>Protection des données personnelles</h3>
+        <div>
+            <p>Conformément à la Loi N°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, vous disposez d'un droit d'accès, de modifications, de rectifications et de suppression des données qui vous concernent.</p>
+            <p>Pour l'exercer, adressez-vous au :<br />Collège Sévigné<br />39 rue Henri Barbusse<br />75005 Paris Ou accédez à la <a href="{{ path('app_contact') }}">page de contact</a>.<br />Les différents services du Collège Sévigné  mettent tout en œuvre pour proposer aux visiteurs du site des informations correctes. Cependant, malgré tous les soins apportés, le site peut comporter des inexactitudes, des oublis ou des défauts de mise à jour. Toute erreur peut être signalée via le <a href="{{ path('app_contact') }}">formulaire de contact.</a></p>
+        </div>
+        <h3>Droits d'auteur et reprise du contenu</h3>
+        <p>Tous les contenus présents sur le site https://sevigne.web-shiny.fr sont couverts par le droit d'auteur. Toute reprise est dès lors conditionnée à l'accord de l'auteur en vertu de l'article L.122-4 du Code de la Propriété Intellectuelle.</p>
+    </div>
+</div>
+
+{% endblock %}

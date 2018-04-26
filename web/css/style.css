@@ -11,6 +11,10 @@ a:hover {
     color: #bfae94;
     text-decoration: none;
 }
+.message {
+    margin-bottom: 0;
+    text-align: center;
+}
 
 /* ------------------ Menu ----------------- */
 .site-header a {
@@ -122,6 +126,18 @@ footer {
 }
 .logo-footer{
     padding-bottom: 2em;
+}
+ul.card-list.contact {
+    text-align: right;
+    font-size: 1.2rem;
+}
+.card-list.contact li a {
+    color: #fff;
+    font-weight: 300;
+    transition: ease-in-out color .15s;
+}
+.card-list.contact li a:hover {
+    color: #bfae94;
 }
 
 /* -------------- Search Page -------------- */

@@ -11,7 +11,9 @@
     <div id="prof" class="form-group">
         <h4>Professeur du cours</h4>
         {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
-        <button type="button" id="newProf">Nouveau professeur</button>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-outline-secondary" type="button" id="newProf">Nouveau professeur</button>
     </div>
 
     <div class="form-group">
@@ -59,7 +61,7 @@
 
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Sauvegarder">
+    <input type="submit" class="btn btn-info" value="Sauvegarder">
 
     {{ form_rest(form) }}
     {{ form_end(form) }}

@@ -23,8 +23,8 @@
         <nav class="site-header sub sticky-top py-1">
             <div class="container menu d-flex flex-column flex-md-row justify-content-around">
                 <a class="py-2 d-none d-md-inline-block" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> Accueil</a>
-                <a class="py-2 d-none d-md-inline-block" href="http://www.collegesevigne.fr">Site Agrégation</a>
-                <a class="py-2 d-none d-md-inline-block" href="#">Nouveautés</a>
+                <a class="py-2 d-none d-md-inline-block" href="http://www.collegesevigne.fr" target="_blank">Site Agrégation</a>
+                <a class="py-2 d-none d-md-inline-block" href="{{ path('app_catalogue') }}">Catalogue complet</a>
                 <a class="py-2 d-none d-md-inline-block" href="#">Mode d'emploi</a>
             </div>
         </nav>
@@ -44,14 +44,13 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
                 <div class="links col-md-2">
-                    <ul class="facet-list">
+                    <ul class="card-list contact">
                         <li><a href="{{ path('app_contact') }}">Contact</a></li>
-                        <li>Mentions légales</li>
-                        <li>Liens</li>
+                        <li><a href="{{ path('app_legale') }}">Mentions légales</a></li>
+                        <li><a href="http://www.education.gouv.fr/" target="_blank">Education nationale</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
-
 {% endblock %}

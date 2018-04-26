@@ -52,3 +52,10 @@ $('select').change(function(){
     var newRole = $(optionSelected).val();
     $(input).val(newRole);
 });
+
+// Masque les messages flash après 3s
+$(document).ready(function(){
+    setTimeout(function() {
+        $('#flash').fadeOut('slow');
+    }, 3000); // <-- time in milliseconds
+});

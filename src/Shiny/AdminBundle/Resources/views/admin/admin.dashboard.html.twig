@@ -4,7 +4,7 @@
     <div class="container-fluid">
         {% for label, messages in app.flashes() %}
             {% for message in messages %}
-                <div class="alert alert-{{ label }}" role="alert">
+                <div id="flash" class="alert alert-{{ label }}" role="alert">
                     <p class="message">Message flash : {{ message }}</p>
                 </div>
             {% endfor %}

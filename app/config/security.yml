@@ -5,7 +5,7 @@ security:
         Shiny\SecuritiesBundle\Entity\User: bcrypt
 
     role_hierarchy:
-            ROLE_ADMIN:       [ROLE_CONTRIBUTEUR, ROLE_MODERATEUR]
+            ROLE_ADMIN:       [ROLE_USER, ROLE_CONTRIBUTEUR, ROLE_MODERATEUR]
             ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:

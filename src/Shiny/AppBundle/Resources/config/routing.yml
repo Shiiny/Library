@@ -8,6 +8,12 @@ app_single:
     requirements:
         id: \d+
 
+app_catalogue:
+    path:     /catalogue/{page}
+    defaults: { _controller: AppBundle:App:catalogue, page: 1 }
+    requirements:
+        page: \d+
+
 app_list:
     path:     /list/{page}
     defaults: { _controller: AppBundle:App:list, page: 1 }
@@ -23,3 +29,7 @@ app_handle_search:
 app_contact:
     path:     /contact
     defaults: { _controller: AppBundle:App:contact }
+
+app_legale:
+    path:     /mentions-legales
+    defaults: { _controller: AppBundle:App:legale }
