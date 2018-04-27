@@ -141,24 +141,11 @@ class SecurityController extends Controller
             // on récupère toute la requete 'change_password'
             $data = $request->request->all()['change_password'];
 
-            // on vérifie l'existence des champs nécessaires
-            if (!array_key_exists('currentPassword', $data) || !array_key_exists('newPassword', $data)) {
-                return array('error' => "Merci de remplir tous les champs");
-            }
-            $currentPassword = $data['currentPassword'];
             $newPassword = $data['newPassword'];
 
             $em = $this->getDoctrine()->getManager();
             // on récupère l'utilsateur actuel
             $user = $this->getUser();
-
-            // on vérifie le mdp courent et le mdp en db de l'utilisateur ainsi que la correspondance des mdp
-            if (!password_verify($currentPassword, $user->getPassword())) {
-                return array('error' => "Le mot de passe actuel n'est pas bon");
-            }
-            elseif ($newPassword['first'] != $newPassword['second']) {
-                return array('error' => "Les deux nouveaux mot de passe ne sont pas identiques");
-            }
 
             // on encode le nouveau mdp et on enregistre puis on redirige
             $passwordCrypt = $passwordEncoder->encodePassword($user, $newPassword['first']);

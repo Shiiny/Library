@@ -2,25 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebe90206-a2b6-4a00-98ce-ccdbf12aeae6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/security.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/security.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin.layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin.layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/admin.dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/admin.dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Controller/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Controller/AppController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Book.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Prof.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Prof.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/search.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/search.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/uploads/111103132616_21.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/uploads/pdf/OpenClassrooms - CollÃ¨ge SÃ©vignÃ© - Engagement Formation - OURY Anthony - Signed.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/uploads/pdf/sfr-facture-0.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Library.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d884ab4-c1c8-430d-b8d2-1b0602321851.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d884ab4-c1c8-430d-b8d2-1b0602321851/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Form/ChangePasswordType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Form/ChangePasswordType.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,12 +61,60 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="form.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/form.html.twig">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="601">
-              <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
+            <state relative-caret-position="520">
+              <caret line="153" column="25" selection-start-line="153" selection-start-column="25" selection-end-line="153" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/config/routing.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookType.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Form/BookType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="41" column="67" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddAuthorListerner.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Form/Listener/AddAuthorListerner.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChangePasswordType.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Form/ChangePasswordType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+              <folding>
+                <element signature="e#48#88#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,7 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/config/config_dev.yml" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Resources/config/services.yml" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Form/UserType.php" />
@@ -102,12 +146,10 @@
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Resources/views/account.html.twig" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Resources/views/register.html.twig" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Resources/views/change-password.html.twig" />
-        <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Form/ChangePasswordType.php" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Resources/views/Emails/active.html.twig" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Security/LoginFormAuthenticator.php" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Entity/User.php" />
-        <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Resources/views/profile.html.twig" />
         <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/list.html.twig" />
         <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Repository/BookRepository.php" />
@@ -142,6 +184,9 @@
         <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/catalogue.html.twig" />
         <option value="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/form.html.twig" />
         <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Book.php" />
+        <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Form/ChangePasswordType.php" />
+        <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -199,9 +244,8 @@
       <path value="$PROJECT_DIR$/vendor/twig/extensions" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="520" />
-    <option name="y" value="32" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="287" />
     <option name="width" value="1401" />
     <option name="height" value="1047" />
   </component>
@@ -211,7 +255,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,17 +265,6 @@
             <path>
               <item name="Library" type="b2602c69:ProjectViewProjectNode" />
               <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -247,14 +279,6 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Shiny" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="AdminBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Shiny" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AdminBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Library" type="b2602c69:ProjectViewProjectNode" />
@@ -270,35 +294,8 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Shiny" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="AdminBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Shiny" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AdminBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Shiny" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AdminBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Shiny" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AdminBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Form" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Listener" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Library" type="b2602c69:ProjectViewProjectNode" />
@@ -315,40 +312,11 @@
               <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Entity" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Library" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="pdf" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,6 +385,7 @@
       <workItem from="1524723891425" duration="242000" />
       <workItem from="1524724182999" duration="377000" />
       <workItem from="1524727206821" duration="40296000" />
+      <workItem from="1524830263910" duration="3152000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout du systeme de login / register">
       <created>1524000065615</created>
@@ -429,7 +398,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="434482000" />
+    <option name="totallyTimeSpent" value="437634000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -441,19 +410,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="520" y="32" width="1401" height="1047" extended-state="0" />
+    <frame x="287" y="0" width="1401" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21327367" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32897604" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5018215" side_tool="true" weight="0.2875817" />
+      <window_info anchor="right" id="Database" order="3" weight="0.24480578" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32946634" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.32946634" />
-      <window_info anchor="bottom" x="70" y="137" width="1138" height="339" id="Terminal" order="11" sideWeight="0.49938875" type="WINDOWED" visible="true" weight="0.39327148" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21029083" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" weight="0.24480578" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32673267" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24952562" />
+      <window_info anchor="bottom" x="70" y="137" width="1138" height="339" id="Terminal" order="11" sideWeight="0.49938875" type="WINDOWED" visible="true" weight="0.39327148" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24954462" />
@@ -465,6 +434,7 @@
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.4981785" weight="0.26732674" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32673267" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,20 +456,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Resources/views/register.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/book.add.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/admin.base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2299" />
@@ -561,13 +517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Form/ChangePasswordType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Resources/views/profile.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -593,9 +542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="676">
           <caret line="41" column="46" selection-start-line="41" selection-start-column="46" selection-end-line="41" selection-end-column="46" />
-          <folding>
-            <element signature="e#12#38#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -603,10 +549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding>
-            <element signature="e#12#33#0#Twig" expanded="true" />
-            <element signature="n#div#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -614,16 +556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/login-style.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Controller/SecurityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -654,9 +586,6 @@
           <caret line="26" column="10" selection-start-line="24" selection-start-column="4" selection-end-line="26" selection-end-column="10" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/legale.html.twig">
       <provider selected="true" editor-type-id="text-editor">
@@ -714,13 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Controller/AdminContentController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-985">
@@ -737,11 +659,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/prof.index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-312">
-          <folding>
-            <element signature="e#12#50#0#Twig" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-312" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Prof.php">
@@ -790,11 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
           <caret line="97" column="14" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
-          <folding>
-            <element signature="e#12#38#0#Twig" expanded="true" />
-            <element signature="e#3533#3572#0#Twig" expanded="true" />
-            <element signature="e#5343#5382#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -809,11 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="754">
           <caret line="80" column="37" selection-start-line="80" selection-start-column="37" selection-end-line="80" selection-end-column="37" />
-          <folding>
-            <element signature="e#46#78#0#PHP" expanded="true" />
-            <element signature="e#3645#3681#0#PHP" expanded="true" />
-            <element signature="e#4104#4137#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -838,15 +746,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Form/BookType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-156" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="601">
           <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shiny/UploadBundle/Handler/UploadHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Form/ChangePasswordType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding>
+            <element signature="e#48#88#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/config/services.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="153" column="25" selection-start-line="153" selection-start-column="25" selection-end-line="153" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Form/BookType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="41" column="67" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shiny/AdminBundle/Form/Listener/AddAuthorListerner.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
         </state>
       </provider>
     </entry>
