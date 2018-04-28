@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebe90206-a2b6-4a00-98ce-ccdbf12aeae6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,17 +48,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="20" column="83" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -179,9 +171,12 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/twig/extensions" />
+      <path value="$PROJECT_DIR$/vendor/deployer/deployer" />
+      <path value="$PROJECT_DIR$/vendor/pimple/pimple" />
+      <path value="$PROJECT_DIR$/vendor/deployer/phar-update" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="929" />
     <option name="y" value="4" />
     <option name="width" value="1011" />
@@ -319,7 +314,7 @@
       <workItem from="1524724182999" duration="377000" />
       <workItem from="1524727206821" duration="40296000" />
       <workItem from="1524830263910" duration="4970000" />
-      <workItem from="1524907772170" duration="30237000" />
+      <workItem from="1524907772170" duration="31170000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout du systeme de login / register">
       <created>1524000065615</created>
@@ -332,7 +327,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="469689000" />
+    <option name="totallyTimeSpent" value="470622000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -344,8 +339,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16151386" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32897604" />
