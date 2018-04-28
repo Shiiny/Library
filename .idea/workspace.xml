@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebe90206-a2b6-4a00-98ce-ccdbf12aeae6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/admin.dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/admin.dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Controller/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Controller/AppController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Repository/BookRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Repository/BookRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/catalogue.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/catalogue.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/legale.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/legale.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/pagination-simple.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/pagination-simple.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/pagination.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/pagination.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/search.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/search.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,7 +46,17 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="520">
+              <caret line="20" column="83" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -105,7 +97,6 @@
         <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Category.php" />
         <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Prof.php" />
         <option value="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/book.index.html.twig" />
-        <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Shiny/AdminBundle/Resources/views/admin/form.html.twig" />
         <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Entity/Book.php" />
         <option value="$PROJECT_DIR$/src/Shiny/SecuritiesBundle/Form/ChangePasswordType.php" />
@@ -132,6 +123,7 @@
         <option value="$PROJECT_DIR$/web/css/style.css" />
         <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/web/app.php" />
+        <option value="$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig" />
       </list>
     </option>
   </component>
@@ -189,7 +181,7 @@
       <path value="$PROJECT_DIR$/vendor/twig/extensions" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="929" />
     <option name="y" value="4" />
     <option name="width" value="1011" />
@@ -327,7 +319,7 @@
       <workItem from="1524724182999" duration="377000" />
       <workItem from="1524727206821" duration="40296000" />
       <workItem from="1524830263910" duration="4970000" />
-      <workItem from="1524907772170" duration="29613000" />
+      <workItem from="1524907772170" duration="30237000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout du systeme de login / register">
       <created>1524000065615</created>
@@ -340,7 +332,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="469065000" />
+    <option name="totallyTimeSpent" value="469689000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -353,8 +345,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16151386" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16151386" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32897604" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5018215" side_tool="true" weight="0.2875817" />
@@ -363,7 +356,7 @@
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32946634" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.32946634" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24952562" />
-      <window_info anchor="bottom" x="41" y="358" width="1138" height="339" id="Terminal" order="11" sideWeight="0.49938875" type="WINDOWED" visible="true" weight="0.39327148" />
+      <window_info active="true" anchor="bottom" x="442" y="166" width="1138" height="339" id="Terminal" order="11" sideWeight="0.49938875" type="WINDOWED" visible="true" weight="0.39327148" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24954462" />
@@ -490,13 +483,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="34" column="97" selection-start-line="34" selection-start-column="97" selection-end-line="34" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -751,6 +737,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shiny/AppBundle/Resources/views/public/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="20" column="83" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
         </state>
       </provider>
     </entry>

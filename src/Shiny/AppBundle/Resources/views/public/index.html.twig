@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><a href="{{ path('app_single', {'id': book.id}) }}">{{ book.title|truncate(50) }}</a></h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{ book.author.nameComplet }}</h6>
-                    <p class="card-text">{{ book.content|truncate(55, true, ' ...')|raw }}</p>
+                    <p class="card-text">{{ book.content|truncate(55, true, ' ...') }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a href="{{ path('app_single', {'id': book.id}) }}" class="btn btn-sm btn-outline-sevigne">Voir ce cours</a>
