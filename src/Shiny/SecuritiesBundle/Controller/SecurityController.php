@@ -42,7 +42,6 @@ class SecurityController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($user->getPlainPassword());
             // Encodage du plainpassword
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
@@ -54,7 +53,7 @@ class SecurityController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $this->sendConfirmationEmail($user);
+            $this->get('library.mailer')->sendConfirmationEmail($user);
 
             $this->addFlash('info', "Un e-mail vous a été envoyé pour le compte ".$user->getEmail());
             return $this->redirectToRoute('security_login');
@@ -74,9 +73,7 @@ class SecurityController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             // on récupère toute la requete 'reset'
             $param = $request->request->all()['reset'];
-            if (!array_key_exists("email", $param)) {
-                throw new \Exception("Pas d'email envoyé");
-            }
+
             // on vérifie que cette email existe dans la db
             $email = $param['email'];
             $em = $this->getDoctrine()->getManager();
@@ -93,7 +90,7 @@ class SecurityController extends Controller
             $em->persist($user);
             $em->flush();
             // on lui renvoi par mail ses identifiants et redirige vers login
-            $this->sendResetEmail($user, $password);
+            $this->get('library.mailer')->sendResetEmail($user, $password);
 
             $this->addFlash('info', "Un e-mail vous a été envoyé");
             return $this->redirectToRoute('security_login');
@@ -102,24 +99,6 @@ class SecurityController extends Controller
         return $this->render('@Securities/reset.html.twig', array('form' => $form->createView()));
     }
 
-    private function sendResetEmail(User $user, $password)
-    {
-        $subject = 'Réinitialisation de votre compte';
-        $userMail = $user->getEmail();
-
-        $message = (new \Swift_Message())
-            ->setSubject($subject)
-            ->setFrom('sevigne@gmail.com')
-            ->setTo($userMail)
-            ->setBody(
-                $this->renderView('@Securities/Emails/resetmdp.html.twig', array(
-                    'user' => $user,
-                    'password' => $password)
-                ),
-                'text/html'
-            );
-        $this->get('mailer')->send($message);
-    }
 
     public function profileAction(Request $request, SessionInterface $session)
     {
@@ -162,24 +141,6 @@ class SecurityController extends Controller
         ));
     }
 
-    private function sendConfirmationEmail(User $user)
-    {
-        $subject = 'Activation de votre compte';
-        $userMail = $user->getEmail();
-
-        $message = (new \Swift_Message())
-            ->setSubject($subject)
-            ->setFrom('sevigne@gmail.com')
-            ->setTo($userMail)
-            ->setBody(
-                $this->renderView('@Securities/Emails/active.html.twig', array(
-                        'user' => $user,
-                        )),
-                'text/html'
-            );
-        $this->get('mailer')->send($message);
-    }
-
     public function activateAction(Request $request)
     {
         $token = $request->query->get('token');
@@ -187,11 +148,13 @@ class SecurityController extends Controller
         $user = $em->getRepository(User::class)->findOneBy(array('token' => $token));
 
         if ($user !== null) {
+            // on passe le compte de l'utilisateur en actif et on met le token a null
             $user->setIsActive(true);
             $user->setToken(null);
             $em->persist($user);
             $em->flush();
 
+            // on envoi un message falsh et l'authenticator authentifie l'utisateur en le connectant automatiquement et redirige
             $this->addFlash('success', "Votre compte est désormais activé");
             return $this->get('security.authentication.guard_handler')
                 ->authenticateUserAndHandleSuccess(

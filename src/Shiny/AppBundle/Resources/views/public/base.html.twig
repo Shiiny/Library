@@ -5,12 +5,12 @@
         {% block app_img %}
             <img id="front_blue" src="{{ asset('/img/front_blue.jpg') }}" alt="accueil">
         {% endblock %}
-        <div class="col-lg-5 col-md-7 contenu">
-            <div class="media">
-                <div class="col-3">
+        <div class="col-lg-5 col-md-9 col-sm-10 contenu">
+            <div class="row media">
+                <div class="col-sm-3">
                     <img class="picto" src="{{ asset('/img/picto_CS.png') }}" alt="picto Collège Sévigné">
                 </div>
-                <div class="col-9 pl-0">
+                <div id="title_site" class="col-sm-9 pl-0">
                     <h1 class="title_site">Bibliothèque Numérique</h1>
                 </div>
             </div>
@@ -20,13 +20,21 @@
 
 
     <div class="midbar">
-        <nav class="site-header sub sticky-top py-1">
-            <div class="container menu d-flex flex-column flex-md-row justify-content-around">
-                <a class="py-2 d-none d-md-inline-block" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> Accueil</a>
-                <a class="py-2 d-none d-md-inline-block" href="http://www.collegesevigne.fr" target="_blank">Site Agrégation</a>
-                <a class="py-2 d-none d-md-inline-block" href="{{ path('app_catalogue') }}">Catalogue complet</a>
-                <a class="py-2 d-none d-md-inline-block" href="#">Mode d'emploi</a>
-            </div>
+        <nav class="site-header navbar navbar-expand-md navbar-dark">
+            <div class="container">
+                <ul class="container navbar-nav mr-auto justify-content-around align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.collegesevigne.fr" target="_blank">Site Agrégation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_catalogue') }}">Catalogue complet</a>
+                    </li>
+                        </div>
+                    </li>
+                </ul>
         </nav>
     </div>
 
@@ -38,12 +46,12 @@
     <footer>
         <div class="container">
             <div class="row d-flex flex-column flex-md-row justify-content-between">
-                <div class="info col-md-6">
+                <div class="info col-md-7">
                     <img class="logo-footer" src="{{ asset('/img/Logo-blanc.png') }}" alt="Logo Collège Sévigné">
                     <h3>Bibliothèque Numérique</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
-                <div class="links col-md-2">
+                <div class="links col-md-3">
                     <ul class="card-list contact">
                         <li><a href="{{ path('app_contact') }}">Contact</a></li>
                         <li><a href="{{ path('app_legale') }}">Mentions légales</a></li>

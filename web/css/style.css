@@ -17,18 +17,25 @@ a:hover {
 }
 
 /* ------------------ Menu ----------------- */
-.site-header a {
+.navbar-dark .navbar-nav .nav-link {
     color: #28586f;
     transition: ease-in-out color .15s;
 }
-.site-header a:hover {
+.navbar-dark  .navbar-nav .nav-link:hover,
+.navbar-dark  .navbar-nav .nav-link:focus {
     color: #bfae94;
-    text-decoration: none;
 }
+.custom-toggler.navbar-toggler {
+    border-color: rgb(40, 88, 111);
+}
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(40, 88, 111)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
 .midbar{
     margin-bottom: 2em;
 }
-nav.site-header.sticky-top.py-1 {
+nav.site-header {
     background-color: #e9e9e9;
 }
 
@@ -67,6 +74,34 @@ button#basic-addon {
 #front {
     height: 100vh;
 }
+@media all and (max-width: 767px){
+    li.nav-item {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #fff;
+        padding: .5em 0;
+    }
+    li.nav-item:last-child {
+        border-bottom: none;
+    }
+}
+@media all and (max-width: 576px){
+    .header.d-flex.justify-content-center.align-items-center {
+        height: 500px;
+        overflow: hidden;
+    }
+    #front, #front_blue {
+        height: inherit;
+        width: 100%;
+    }
+    .picto {
+        display: none;
+    }
+    #title_site {
+        padding-left: 15px !important;
+    }
+}
+
 
 /* ------------------ Bouton ---------------- */
 .btn-outline-sevigne {
@@ -97,6 +132,18 @@ button#basic-addon {
 .page-item.active .page-link {
     background-color: #bfae94;
     border-color: #bfae94;
+}
+
+element.style {
+}
+.page-link:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(191, 174, 148, .25);
+}
+.page-link:hover {
+    color: #bfae94;
 }
 /* ---------------- Index ----------------- */
 .heading {
@@ -158,6 +205,10 @@ ul.card-list.contact {
 .pull-right {
     float: right;
     color: #bfae94;
+}
+li.search-active {
+    background-color: #e6ded1;
+    padding: .5em;
 }
 .accordion-toggle .panel-heading {
     border-bottom: 1px solid #d6d6d6;
@@ -414,4 +465,40 @@ a.active div {
 #map {
     height: 400px;
     width: 100%;
+}
+
+/*------------- Error 404 -----------------*/
+
+#error {
+    padding: 150px 0;
+    text-align: center;
+}
+.hgroup {
+    margin: 0 auto;
+}
+.hgroup h1,
+.hgroup h2 {
+    margin: 0 0 0 40px;
+    padding: 0;
+    display: inline-block;
+    text-transform: uppercase;
+}
+.hgroup h1 {
+    margin-top: -90px;
+    font-size: 200px;
+}
+.hgroup h2 {
+    font-size: 60px;
+}
+.hgroup h2 span {
+    display: block;
+    font-size: 30px;
+}
+#error p {
+    margin: 25px 0 0 0;
+    padding: 0;
+    font-size: 16px;
+}
+#error p:first-child {
+    margin-top: 0;
 }

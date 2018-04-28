@@ -19,23 +19,33 @@ class AppController extends Controller
         return $this->render('@App/public/index.html.twig', array('books' => $books));
     }
 
-    public function listAction(Request $request, $page)
+    public function listAction($param, $id, $page)
     {
-        $search = $request->query->get('search');
+        $entityName = ucfirst($param);
+        $nbPerPage = 1;
 
-        $nbPerPage = 5;
-        $result = $this->getDoctrine()->getRepository(Book::class)->getSearchWithPaginate($search, $page, $nbPerPage);
+        $result = $this->getDoctrine()->getRepository('AppBundle:'.$entityName)->find($id);
+
+        $books = $this->getDoctrine()->getRepository(Book::class)->findByParam($param, $result->getId(), $page, $nbPerPage);
 
         $paging = [
             'page' => $page,
-            'nbPages' => ceil(count($result)/$nbPerPage),
-            'route' => 'app_list'
+            'nbPages' => ceil(count($books)/$nbPerPage),
+            'route' => 'app_list',
+            'param' => 'param'
         ];
 
+        if ($param != 'prof') {
+            $result = $result->getName();
+        }
+        else {
+            $result = $result->getNameComplet();
+        }
+
         return $this->render('@App/public/list.html.twig', array(
-            'books' => $result,
-            'search' => $search,
-            'paging' => $paging
+            'books' => $books,
+            'paging' => $paging,
+            'result' => $result
         ));
     }
 
@@ -43,7 +53,7 @@ class AppController extends Controller
     {
         if ($book->getAuthor() !== null) {
             $otherBooks = $this->getDoctrine()->getRepository(Book::class)
-                ->getFromAuthor($book->getAuthor()->getNameComplet());
+                ->getFromAuthor($book->getAuthor()->getId());
         }
 
         return $this->render('@App/public/single.html.twig', array(
@@ -55,11 +65,13 @@ class AppController extends Controller
     public function handleSearchAction(Request $request, $page)
     {
         $search = $request->get('search');
+        $author = $request->get('author');
+        $category = $request->get('category');
 
-        $nbPerPage = 5;
-        $countBook = $this->getDoctrine()->getRepository(Book::class)->countBySearch($search);
 
-        $resultSearch = $this->getDoctrine()->getRepository(Book::class)->getSearchWithPaginate($search, $page, $nbPerPage);
+        $nbPerPage = 1;
+
+        $resultSearch = $this->getDoctrine()->getRepository(Book::class)->getSearchWithPaginate($search, $author, $category, $page, $nbPerPage);
 
         // Récupération des données à n'afficher qu'une fois afin d'éviter les doublons
         $books = $this->getDoctrine()->getRepository(Book::class)->findBySearch($search);
@@ -93,30 +105,13 @@ class AppController extends Controller
         $formContact->handleRequest($request);
         if ($formContact->isSubmitted() && $formContact->isValid()) {
             $data = $formContact->getData();
-            $this->sendContactMail($data);
+            $this->get('library.mailer')->sendContactMail($data);
 
             $this->addFlash('info', "Votre message a bien été envoyé");
             return $this->redirectToRoute('app_homepage');
         }
 
         return $this->render('@App/public/contact.html.twig', array('formContact' => $formContact->createView()));
-    }
-
-    private function sendContactMail($data)
-    {
-        $subject = 'Formulaire de contact';
-        $userMail = $data['email'];
-
-        $message = (new \Swift_Message())
-            ->setSubject($subject)
-            ->setFrom($userMail)
-            ->setTo('contact@web-shiny.fr')
-            ->setBody(
-                $this->renderView('@App/Email/email.contact.html.twig', array('data' => $data)
-                ),
-                'text/html'
-            );
-        $this->get('mailer')->send($message);
     }
 
     public function legaleAction()

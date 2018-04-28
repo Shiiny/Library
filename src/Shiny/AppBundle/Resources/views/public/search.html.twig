@@ -18,10 +18,11 @@
                                 </div>
                             </a>
                             <div id="collapse01" class="panel-collapse facet-collapse in" aria-hidden="false" tabindex="0">
-                                <ul class="facet-list">
+                                <ul id="categories" class="facet-list">
                                     {% for categorie in categories %}
-                                    <li>
-                                        <a href="{{ path('app_list', {'search': categorie }) }}" title="{{ categorie }}">{{ categorie }}</a>
+
+                                    <li {% if categorie == app.request.get('category') %} class="search-active" {% endif %}>
+                                        <a href="{{ path('app_handle_search', {'search': search, 'author': app.request.get('author'), 'category': categorie }) }}" title="{{ categorie }}">{{ categorie }}</a>
                                     </li>
                                     {% endfor %}
                                 </ul>
@@ -38,8 +39,8 @@
                             <div id="collapse02" class="panel-collapse facet-collapse in" aria-hidden="false">
                                 <ul class="facet-list">
                                     {% for profName in profsName %}
-                                    <li>
-                                        <a href="{{ path('app_list', {'search': profName }) }}" title="{{ profName }}">{{ profName }}</a>
+                                    <li {% if profName == app.request.get('author') %} class="search-active" {% endif %}>
+                                        <a href="{{ path('app_handle_search', {'search': search, 'author': profName, 'category': app.request.get('category') }) }}" title="{{ profName }}">{{ profName }}</a>
                                     </li>
                                     {% endfor %}
                                 </ul>

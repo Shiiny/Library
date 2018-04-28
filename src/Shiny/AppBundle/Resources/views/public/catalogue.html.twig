@@ -5,7 +5,7 @@
         <div class="sidebar col-md-4 mb-4">
             <div class="panel panel-front">
                 <div class="panel-heading">
-                    <h3>Affinez votre recherche</h3>
+                    <h3>Sélectionnez une rubrique</h3>
                 </div>
                 <div class="panel-body">
                     <div class="accordion" id="facet_container">
@@ -21,7 +21,7 @@
                                 <ul class="facet-list">
                                     {% for categorie in allCategories %}
                                         <li>
-                                            <a href="{{ path('app_list', {'search': categorie.name }) }}" title="{{ categorie.name }}">{{ categorie.name }}</a>
+                                            <a href="{{ path('app_list', {'param': 'category', 'id': categorie.id }) }}" title="{{ categorie.name }}">{{ categorie.name }}</a>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -39,7 +39,7 @@
                                 <ul class="facet-list">
                                     {% for prof in allProfs %}
                                         <li>
-                                            <a href="{{ path('app_list', {'search': prof.nameComplet }) }}" title="{{ prof.nameComplet }}">{{ prof.nameComplet }}</a>
+                                            <a href="{{ path('app_list', {'param': 'prof', 'id': prof.id}) }}" title="{{ prof.nameComplet }}">{{ prof.nameComplet }}</a>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -57,7 +57,7 @@
 
                 <div class="resultBar">
                     <div class="list-inline">
-                        <p>Résultats : {{ paging.count }}</p>
+                        <p>Tous les cours : {{ paging.count }}</p>
                         <div class="itemPagination">
                             <nav aria-label="Page navigation example">
                                 {% include '@App/public/pagination-simple.html.twig' %}

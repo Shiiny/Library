@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="library_user")
- * @ORM\Entity(repositoryClass="Shiny\AppBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="Shiny\SecuritiesBundle\Repository\UserRepository")
  * @UniqueEntity(fields={"email"}, message="Cette e-mail est déjà pris")
  * @UniqueEntity(fields={"username"}, message="Nom d'utilisateur déjà pris")
  */

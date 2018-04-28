@@ -1,6 +1,6 @@
 <?php
 
-namespace Shiny\AppBundle\Repository;
+namespace Shiny\SecuritiesBundle\Repository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**

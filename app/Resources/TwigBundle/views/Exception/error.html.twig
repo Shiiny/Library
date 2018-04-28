@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ status_code }} ERROR</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bibliothèque numérique du Collège Sévigné, plateforme de cours pour agrégatifs ou capetiens">
+    <meta name="author" content="Anthony">
+    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.ico') }}" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}"></head>
+<div class="container">
+    <div class="row">
+        <section id="error">
+            <div class="row hgroup">
+                <h1>{{ status_code }}</h1>
+                <h2>Error ! <span>{{ status_text }}</span></h2>
+            </div>
+            <p>Pour une raison quelconque, la page que vous avez demandée n'a pas pu être trouvée sur le serveur</p>
+            <p><a href="javascript:history.go(-1)">&laquo; Retour</a> / <a href="{{ path('app_homepage') }}">Aller à l'accueil &raquo;</a></p>
+        </section>
+    </div>
+</div>

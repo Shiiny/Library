@@ -31,17 +31,39 @@ class BookRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
-    public function getFromAuthor($name)
+    public function getFromAuthor($id)
     {
         $query = $this->getBooksWithCategorie()
             ->leftJoin('b.author', 'a')
             ->addSelect('a')
-            ->where('a.nameComplet LIKE :name')
-            ->setParameter('name', $name)
+            ->where('a.id = :id')
+            ->setParameter('id', $id)
             ->getQuery();
 
         return $query->getResult();
 
+    }
+
+    public function findByParam($param, $id, $currentPage, $limite)
+    {
+        $query = $this->getBooksWithCategorie()
+            ->leftJoin('b.author', 'a')
+            ->addSelect('a');
+
+        if ($param !== 'prof') {
+            $query->where('c.id = :id')
+            ->setParameter('id', $id);
+        }
+        else {
+            $query
+            ->where('a.id = :id')
+            ->setParameter('id', $id);
+        }
+        $query
+        ->setFirstResult(($currentPage -1) * $limite)
+        ->setMaxResults($limite);
+
+        return new Paginator($query, true);
     }
 
     public function findAllBooksWithPaginate($currentPage, $limite)
@@ -65,36 +87,46 @@ class BookRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
-    public function getSearch($search)
+    public function getSearch($search, $author = null, $category = null)
     {
-        $query = $this->getBooksWithCategorie()
-            ->leftJoin('b.author', 'a')
-            ->addSelect('a')
-            ->where(
-                'b.title LIKE :search 
+        // explose la chaine de caractère search pour un multiple recherche
+        $terms = explode(' ', $search);
+        $sql = 'b.title LIKE :search 
                 OR c.name LIKE :search 
                 OR a.firstName LIKE :search 
                 OR a.lastName LIKE :search 
                 OR a.nameComplet LIKE :search
                 OR b.yearBook LIKE :search  
-                OR b.content LIKE :search ')
-            ->setParameter('search', '%'.$search.'%');
+                OR b.content LIKE :search ';
+
+        // ajoute la jointure sur l'entité prof et remplace le parameter search
+        $query = $this->getBooksWithCategorie()
+            ->leftJoin('b.author', 'a')
+            ->addSelect('a')
+            ->where($sql)
+            ->setParameter('search', '%'.$terms[0].'%');
+
+        if(count($terms) > 1) {
+            for ($i = 1; $i < count($terms); $i++) {
+                $query->andWhere($sql)->setParameter('search', '%'.$terms[$i].'%');
+            }
+        }
+
+        if (null !== $author) {
+            $query->andWhere('a.nameComplet = :author')->setParameter('author', $author);
+        }
+
+        if (null !== $category) {
+            $query->andWhere('c.name = :category')->setParameter('category', $category);
+        }
 
         return $query;
     }
 
-    public function countBySearch($search)
+    // Affiche la pagination avec le mot clé de search, author et/ou category
+    public function getSearchWithPaginate($search, $author, $category, $currentPage, $limite)
     {
-        $query = $this->getSearch($search)
-            ->select('COUNT(b)')
-            ->getQuery();
-
-        return $query->getSingleScalarResult();
-    }
-
-    public function getSearchWithPaginate($search, $currentPage, $limite)
-    {
-        $query = $this->getSearch($search)
+        $query = $this->getSearch($search, $author, $category)
             ->orderBy('b.updatedAt', 'DESC')
             ->setFirstResult(($currentPage -1) * $limite)
             ->setMaxResults($limite);

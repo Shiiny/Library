@@ -15,9 +15,10 @@ app_catalogue:
         page: \d+
 
 app_list:
-    path:     /list/{page}
+    path:     /list/{param}/{id}/{page}
     defaults: { _controller: AppBundle:App:list, page: 1 }
     requirements:
+        id: \d+
         page: \d+
 
 app_handle_search:

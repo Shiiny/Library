@@ -1,17 +1,16 @@
 {% extends '@App/public/base.html.twig' %}
 
 {% block app_body %}
+    <div class="heading">
+        <h3>Toutes les cours : {{ result }}</h3>
+    </div>
     <div class="maincontent col-sm-9 col-xs-12">
-        <h2>Liste complète : {{ search }}</h2>
-        {% if books is empty %}
-            <p>Pas de réultat</p>
-        {% else %}
 
             <div class="resultBar">
                 <div class="list-inline">
                     <div class="itemPagination">
                         <nav aria-label="Page navigation example">
-                            {% include '@App/public/pagination.html.twig' %}
+                            {% include '@App/public/pagination-simple.html.twig' %}
                         </nav>
                     </div>
                 </div>
@@ -39,10 +38,9 @@
             {% endfor %}
             <div class="itemPagination">
                 <nav aria-label="Page navigation example">
-                    {% include '@App/public/pagination.html.twig' %}
+                    {% include '@App/public/pagination-simple.html.twig' %}
                 </nav>
             </div>
-        {% endif %}
     </div>
 
 {% endblock %}
