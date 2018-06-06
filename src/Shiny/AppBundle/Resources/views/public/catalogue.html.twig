@@ -1,98 +1,17 @@
-{% extends '@App/public/base.html.twig' %}
+{% extends '@App/public/page-list.html.twig' %}
 
-{% block app_body %}
-    <div class="row">
-        <div class="sidebar col-md-4 mb-4">
-            <div class="panel panel-front">
-                <div class="panel-heading">
-                    <h3>Sélectionnez une rubrique</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="accordion" id="facet_container">
-                        <div id="accordion01" class="panel-group categories">
-                            <a href="#collapse01" data-toggle="collapse" data-parent="facet_container" title="Catégories" class="accordion-toggle" aria-selected="true" aria-expanded="true" aria-controls="collapse01">
-                                <div class="panel panel-layout">
-                                    <div class="panel-heading">
-                                        <h4>CATEGORIES <i class="fas fa-chevron-up pull-right"></i></h4>
-                                    </div>
-                                </div>
-                            </a>
-                            <div id="collapse01" class="panel-collapse facet-collapse in" aria-hidden="false" tabindex="0">
-                                <ul class="facet-list">
-                                    {% for categorie in allCategories %}
-                                        <li>
-                                            <a href="{{ path('app_list', {'param': 'category', 'id': categorie.id }) }}" title="{{ categorie.name }}">{{ categorie.name }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="accordion02" class="panel-group profs">
-                            <a href="#collapse02" data-toggle="collapse" data-parent="facet_container" title="Professeurs" class="accordion-toggle" aria-selected="true" aria-expanded="true" aria-controls="collapse02">
-                                <div class="panel panel-layout">
-                                    <div class="panel-heading">
-                                        <h4>PROFESSEURS <i class="fas fa-chevron-up pull-right"></i></h4>
-                                    </div>
-                                </div>
-                            </a>
-                            <div id="collapse02" class="panel-collapse facet-collapse in" aria-hidden="false">
-                                <ul class="facet-list">
-                                    {% for prof in allProfs %}
-                                        <li>
-                                            <a href="{{ path('app_list', {'param': 'prof', 'id': prof.id}) }}" title="{{ prof.nameComplet }}">{{ prof.nameComplet }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+{% block sidebar_categories %}
+    {% for categories in allCategories %}
+        <li>
+            <a href="{{ path('app_list', {'param': 'category', 'id': categories.id}) }}" title="{{ categories.name }}">{{ categories.name }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}
 
-        <div class="maincontent col-md-8 mb-4">
-            {% if allBooks is empty %}
-                <p>Pas de réultat</p>
-            {% else %}
-
-                <div class="resultBar">
-                    <div class="list-inline">
-                        <p>Tous les cours : {{ paging.count }}</p>
-                        <div class="itemPagination">
-                            <nav aria-label="Page navigation example">
-                                {% include '@App/public/pagination-simple.html.twig' %}
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                {% for book in allBooks %}
-                    <div class="card mb-3 box-shadow">
-                        <div class="card-body row">
-                            <div class="col-sm-4 mb-3">
-                                <img src="{{ asset(book.file.pathname) }}" class="card-img" alt="{{ book.filename }}">
-                            </div>
-                            <div class="col-sm-8">
-                                <div class="itemDetails">
-                                    <h3 class="card-title"><a href="{{ path('app_single', {'id': book.id}) }}">{{ book.title }}</a></h3>
-                                    <h5 class="card-subtitle mb-2 text-muted">{{ book.category }}</h5>
-                                    <div class="row justify-content-between">
-                                        <p class="col-6 small text-muted">Professeur : {{ book.author.firstName|upper }} {{ book.author.lastName }}</p>
-                                        <p class="col-6 small text-muted date">Année : {{ book.yearBook }}</p>
-                                    </div>
-                                    <p class="content">{{ book.content|truncate(350, true, " ...") }}</p>
-                                    <a href="{{ path('app_single', {'id': book.id}) }}" class="btn btn-outline-sevigne">Consulter le document</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-                <div class="itemPagination">
-                    <nav aria-label="Page navigation example">
-                        {% include '@App/public/pagination-simple.html.twig' %}
-                    </nav>
-                </div>
-            {% endif %}
-        </div>
-
-    </div>
+{% block sidebar_profs %}
+    {% for prof in allProfs %}
+        <li>
+            <a href="{{ path('app_list', {'param': 'prof', 'id': prof.id}) }}" title="{{ prof.nameComplet }}">{{ prof.nameComplet }}</a>
+        </li>
+    {% endfor %}
 {% endblock %}

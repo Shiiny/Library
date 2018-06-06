@@ -1,0 +1,87 @@
+{% extends '@App/public/base.html.twig' %}
+{% block app_body %}
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="cs__sidebar">
+                <div class="cs__sidebar__heading">
+                    <h3>{% block sidebar_title %}Sélectionnez une rubrique{% endblock %}</h3>
+                </div>
+                <div class="cs__sidebar__body">
+                    <div class="cs__accordion" id="cs__sidebar__accordion">
+                        <div id="accordion01" class="categories">
+                            <a href="#collapse01" data-toggle="collapse" data-parent="cs__sidebar__accordion" title="Catégories" class="accordion-toggle" aria-selected="true" aria-expanded="true" aria-controls="collapse01">
+                                <div class="cs__sidebar__accordion__content">
+                                    <div class="cs__sidebar__accordion__heading">
+                                        <h4 class="cs__sidebar__accordion__title">CATEGORIES <i class="fas fa-chevron-up pull-right"></i></h4>
+                                    </div>
+                                </div>
+                            </a>
+                            <div id="collapse01" class="collapse show" aria-hidden="false" tabindex="0">
+                                <ul class="cs__sidebar__accordion__list">
+                                    {% block sidebar_categories %}
+                                    {% endblock %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="accordion02" class="profs">
+                            <a href="#collapse02" data-toggle="collapse" data-parent="cs__sidebar__accordion" title="Professeurs" class="accordion-toggle" aria-selected="true" aria-expanded="true" aria-controls="collapse02">
+                                <div class="cs__sidebar__accordion__content">
+                                    <div class="cs__sidebar__accordion__heading">
+                                        <h4 class="cs__sidebar__accordion__title">PROFESSEURS <i class="fas fa-chevron-up pull-right"></i></h4>
+                                    </div>
+                                </div>
+                            </a>
+                            <div id="collapse02" class="collapse show" aria-hidden="false">
+                                <ul class="cs__sidebar__accordion__list">
+                                    {% block sidebar_profs %}
+                                    {% endblock %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="maincontent col-md-8 mb-4">
+            {% if books is not empty %}
+                {% block main_title %}{% endblock %}
+                <div class="cs__resultBar">
+                    <p>Tous les cours : {{ paging.count }}</p>
+                    <div class="cs__pagination">
+                        <nav aria-label="Pagination">
+                            {% include '@App/public/pagination.html.twig' %}
+                        </nav>
+                    </div>
+                </div>
+                {% for book in books %}
+                    <div class="cs__card">
+                        <div class="cs__card__container">
+                            <figure class="cs__card__thumbnail col-sm-4">
+                                <img src="{{ asset(book.file.pathname) }}" class="cs__img" alt="{{ book.filename }}">
+                            </figure>
+                            <div class="cs__card__book col-sm-8">
+                                <h3 class="cs__card__title"><a href="{{ path('app_single', {'id': book.id}) }}">{{ book.title }}</a></h3>
+                                <span class="cs__card__tag">{{ book.category }}</span>
+                                <div class="cs__card__subinfo">
+                                    <p class="col-8 small text-muted">Professeur : {{ book.author.firstName|upper }} {{ book.author.lastName }}</p>
+                                    <p class="col-4 small text-muted date">Année : {{ book.yearBook }}</p>
+                                </div>
+                                <p class="cs__card__content">{{ book.content|truncate(350, true, " ...") }}</p>
+                                <a href="{{ path('app_single', {'id': book.id}) }}" class="btn btn-outline-sevigne">Voir le cours</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="cs__pagination">
+                    <nav aria-label="Pagination">
+                        {% include '@App/public/pagination.html.twig' %}
+                    </nav>
+                </div>
+            {% else %}
+                <p>Aucun résultat</p>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}

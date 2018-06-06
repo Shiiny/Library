@@ -122,20 +122,20 @@ class AppController extends Controller
     public function catalogueAction($page)
     {
         $nbPerPage = 5;
-        $allBooks = $this->getDoctrine()->getRepository(Book::class)
+        $books = $this->getDoctrine()->getRepository(Book::class)
             ->findAllBooksWithPaginate($page, $nbPerPage);
         $allProfs = $this->getDoctrine()->getRepository(Prof::class)->findAll();
         $allCategories = $this->getDoctrine()->getRepository(Category::class)->findAll();
 
         $paging = [
             'page' => $page,
-            'count' => count($allBooks),
-            'nbPages' => ceil(count($allBooks)/$nbPerPage),
+            'count' => count($books),
+            'nbPages' => ceil(count($books)/$nbPerPage),
             'route' => 'app_catalogue'
         ];
 
         return $this->render('@App/public/catalogue.html.twig', array(
-            'allBooks' => $allBooks,
+            'books' => $books,
             'allProfs' => $allProfs,
             'allCategories' => $allCategories,
             'paging' => $paging

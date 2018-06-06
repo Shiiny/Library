@@ -1,100 +1,23 @@
-{% extends "@App/public/base.html.twig" %}
+{% extends "@App/public/page-list.html.twig" %}
 
-{% block app_body %}
-    <div class="row">
-        <div class="sidebar col-md-4 mb-4">
-            <div class="panel panel-front">
-                <div class="panel-heading">
-                    <h3>Affinez votre recherche</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="accordion" id="facet_container">
-                        <div id="accordion01" class="panel-group categories">
-                            <a href="#collapse01" data-toggle="collapse" data-parent="facet_container" title="Catégories" class="accordion-toggle" aria-selected="true" aria-expanded="true" aria-controls="collapse01">
-                                <div class="panel panel-layout">
-                                    <div class="panel-heading">
-                                        <h4>CATEGORIES <i class="fas fa-chevron-up pull-right"></i></h4>
-                                    </div>
-                                </div>
-                            </a>
-                            <div id="collapse01" class="panel-collapse facet-collapse in" aria-hidden="false" tabindex="0">
-                                <ul id="categories" class="facet-list">
-                                    {% for categorie in categories %}
+{% block sidebar_title %}Affinez votre recherche{% endblock %}
 
-                                    <li {% if categorie == app.request.get('category') %} class="search-active" {% endif %}>
-                                        <a href="{{ path('app_handle_search', {'search': search, 'author': app.request.get('author'), 'category': categorie }) }}" title="{{ categorie }}">{{ categorie }}</a>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="accordion02" class="panel-group profs">
-                            <a href="#collapse02" data-toggle="collapse" data-parent="facet_container" title="Professeurs" class="accordion-toggle" aria-selected="true" aria-expanded="true" aria-controls="collapse02">
-                                <div class="panel panel-layout">
-                                    <div class="panel-heading">
-                                        <h4>PROFESSEURS <i class="fas fa-chevron-up pull-right"></i></h4>
-                                    </div>
-                                </div>
-                            </a>
-                            <div id="collapse02" class="panel-collapse facet-collapse in" aria-hidden="false">
-                                <ul class="facet-list">
-                                    {% for profName in profsName %}
-                                    <li {% if profName == app.request.get('author') %} class="search-active" {% endif %}>
-                                        <a href="{{ path('app_handle_search', {'search': search, 'author': profName, 'category': app.request.get('category') }) }}" title="{{ profName }}">{{ profName }}</a>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+{% block sidebar_categories %}
+    {% for categorie in categories %}
+        <li {% if categorie == app.request.get('category') %} class="search-active" {% endif %}>
+            <a href="{{ path('app_handle_search', {'search': search, 'author': app.request.get('author'), 'category': categorie }) }}" title="{{ categorie }}">{{ categorie }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}
 
-        <div class="maincontent col-md-8 mb-4">
-            <h2>Résultats de la recherche : "{{ search }}"</h2>
-            {% if books is empty %}
-                <p>Pas de réultat</p>
-            {% else %}
+{% block sidebar_profs %}
+    {% for profName in profsName %}
+        <li {% if profName == app.request.get('author') %} class="search-active" {% endif %}>
+            <a href="{{ path('app_handle_search', {'search': search, 'author': profName, 'category': app.request.get('category') }) }}" title="{{ profName }}">{{ profName }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}
 
-            <div class="resultBar">
-                <div class="list-inline">
-                    <p>Résultats : {{ paging.count }}</p>
-                    <div class="itemPagination">
-                        <nav aria-label="Page navigation example">
-                            {% include '@App/public/pagination.html.twig' %}
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            {% for result in books %}
-                <div class="card mb-3 box-shadow">
-                    <div class="card-body row">
-                        <div class="col-sm-4 mb-3">
-                            <img src="{{ asset(result.file.pathname) }}" class="card-img" alt="{{ result.filename }}">
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="itemDetails">
-                                <h3 class="card-title"><a href="{{ path('app_single', {'id': result.id}) }}">{{ result.title }}</a></h3>
-                                <h5 class="card-subtitle mb-2 text-muted">{{ result.category }}</h5>
-                                <div class="row justify-content-between">
-                                    <p class="col-6 small text-muted">Professeur : {{ result.author.firstName|upper }} {{ result.author.lastName }}</p>
-                                    <p class="col-6 small text-muted date">Année : {{ result.yearBook }}</p>
-                                </div>
-                                <p class="content">{{ result.content|truncate(350, true, " ...") }}</p>
-                                <a href="{{ path('app_single', {'id': result.id}) }}" class="btn btn-outline-sevigne">Consulter le document</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-                <div class="itemPagination">
-                    <nav aria-label="Page navigation example">
-                        {% include '@App/public/pagination.html.twig' %}
-                    </nav>
-                </div>
-            {% endif %}
-        </div>
-
-    </div>
+{% block main_title %}
+    <h2>Résultats de la recherche : "{{ search }}"</h2>
 {% endblock %}

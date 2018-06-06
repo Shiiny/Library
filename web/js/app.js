@@ -64,3 +64,20 @@ $(document).ready(function(){
         $('#flash').fadeOut('slow');
     }, 3000); // <-- time in milliseconds
 });
+
+// Applique une rotation au chevron de la sidebar
+$(document).ready(function() {
+    let chevrons = document.querySelectorAll('.cs__sidebar__accordion__title')
+
+    for( let i = 0; i < chevrons.length; i++) {
+        chevrons[i].addEventListener('click', function () {
+            let child = [].slice.call(chevrons[i].children)
+            if (child[0].style.transform === 'rotate(180deg)') {
+                child[0].style.transform = 'rotate(0deg)'
+            }
+            else {
+                child[0].style.transform = 'rotate(180deg)'
+            }
+        })
+    }
+});

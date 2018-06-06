@@ -1,36 +1,37 @@
 {% extends "@App/layout.html.twig" %}
 
 {% block body %}
-    <div class="header d-flex justify-content-center align-items-center">
-        {% block app_img %}
-            <img id="front_blue" src="{{ asset('/img/front_blue.jpg') }}" alt="accueil">
-        {% endblock %}
-        <div class="col-lg-5 col-md-9 col-sm-10 contenu">
-            <div class="row media">
-                <div class="col-sm-3">
-                    <img class="picto" src="{{ asset('/img/picto_CS.png') }}" alt="picto Collège Sévigné">
+    <div class="cs__container__search">
+        <div class="cs__content__search">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10">
+                <div class="cs__content__search-title">
+                    <div class="cs__search__picto col-md-3 col-sm-4">
+                        <img class="cs__picto" src="{{ asset('/img/picto_CS.png') }}" alt="picto Collège Sévigné">
+                    </div>
+                    <div class="col-sm-9">
+                        <h1 class="cs__title_site">Bibliothèque Numérique</h1>
+                    </div>
                 </div>
-                <div id="title_site" class="col-sm-9 pl-0">
-                    <h1 class="title_site">Bibliothèque Numérique</h1>
-                </div>
+                {{ include('@App/public/form.search.html.twig') }}
             </div>
-            {{ include('@App/public/form.search.html.twig') }}
         </div>
+        {% block app_img %}
+            <img class="cs__front-blue" src="{{ asset('/img/front_blue.jpg') }}" alt="accueil">
+        {% endblock %}
     </div>
 
-
-    <div class="midbar">
-        <nav class="site-header navbar navbar-expand-md navbar-dark">
+    <div class="cs__header__midBar">
+        <nav class="cs__main__nav">
             <div class="container">
-                <ul class="container navbar-nav mr-auto justify-content-around align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> Accueil</a>
+                <ul class="cs__menu container">
+                    <li class="cs__menu-midBar">
+                        <a class="cs__menu-link" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> Accueil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://www.collegesevigne.fr" target="_blank">Site Agrégation</a>
+                    <li class="cs__menu-midBar">
+                        <a class="cs__menu-link" href="http://www.collegesevigne.fr" target="_blank">Site Agrégation</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_catalogue') }}">Catalogue complet</a>
+                    <li class="cs__menu-midBar">
+                        <a class="cs__menu-link" href="{{ path('app_catalogue') }}">Catalogue complet</a>
                     </li>
                         </div>
                     </li>
@@ -43,16 +44,16 @@
         {% endblock %}
     </div>
 
-    <footer>
+    <footer class="cs__footer">
         <div class="container">
-            <div class="row d-flex flex-column flex-md-row justify-content-between">
-                <div class="info col-md-7">
-                    <img class="logo-footer" src="{{ asset('/img/Logo-blanc.png') }}" alt="Logo Collège Sévigné">
+            <div class="cs__footer__content">
+                <div class="cs__footer__info col-md-7">
+                    <img class="cs__footer-logo" src="{{ asset('/img/Logo-blanc.png') }}" alt="Logo Collège Sévigné">
                     <h3>Bibliothèque Numérique</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
-                <div class="links col-md-3">
-                    <ul class="card-list contact">
+                <div class="cs__footer__links col-md-3">
+                    <ul class="cs__footer__links__list">
                         <li><a href="{{ path('app_contact') }}">Contact</a></li>
                         <li><a href="{{ path('app_legale') }}">Mentions légales</a></li>
                         <li><a href="http://www.education.gouv.fr/" target="_blank">Education nationale</a></li>

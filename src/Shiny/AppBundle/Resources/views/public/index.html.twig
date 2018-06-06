@@ -1,6 +1,6 @@
 {% extends "@App/public/base.html.twig" %}
 {% block app_img %}
-    <img id="front" src="{{ asset('/img/front.jpg') }}" alt="accueil">
+    <img class="cs__front" src="{{ asset('/img/front.jpg') }}" alt="accueil">
 {% endblock %}
 
 {% block app_body %}
@@ -10,20 +10,29 @@
 
     <div class="content row">
         {% for book in books %}
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="card mb-4 box-shadow">
-                <figure class="card-img-top">
-                    <img src="{{ asset(book.file.pathname) }}" alt="">
-                </figure>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="{{ path('app_single', {'id': book.id}) }}">{{ book.title|truncate(50) }}</a></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ book.author.nameComplet }}</h6>
-                    <p class="card-text">{{ book.content|truncate(55, true, ' ...') }}</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="{{ path('app_single', {'id': book.id}) }}" class="btn btn-sm btn-outline-sevigne">Voir ce cours</a>
+        <div class="col-md-3 col-sm-6">
+            <div class="cs__card">
+                <div class="cs__card__descriptionWarpper">
+                    <a class="cs__card__item" href="{{ path('app_single', {'id': book.id}) }}">
+                        <div class="cs__card__body">
+                            <h5 class="cs__card__title">{{ book.title|truncate(50) }}</h5>
+                            <p class="cs__card__subtitle"><em>Auteur : {{ book.author.nameComplet }}</em></p>
+                            <p class="cs__card__content">{{ book.content|truncate(200, true, " ...") }}</p>
                         </div>
+                    </a>
+                </div>
+                <div class="cs__card__description">
+                    <figure class="cs__card__img">
+                        <img src="{{ asset('/img/default.jpg') }}" alt="vignette defaut">
+                        <span class="cs__card__categorie">{{ book.category }}</span>
+                    </figure>
+                    <div class="cs__card__body">
+                        <h5 class="cs__card__title">{{ book.title|truncate(50) }}</h5>
+                        <p class="cs__card__subtitle"><em>Auteur : {{ book.author.nameComplet }}</em></p>
                     </div>
+                </div>
+                <div class="cs__card__action">
+                    <span>Voir le cours</span>
                 </div>
             </div>
         </div>

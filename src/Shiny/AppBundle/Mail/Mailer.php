@@ -37,7 +37,7 @@ class Mailer {
 
         $message = (new \Swift_Message())
             ->setSubject($subject)
-            ->setFrom('sevigne@gmail.com')
+            ->setFrom('a.oury@collegesevigne.fr')
             ->setTo($userMail)
             ->setBody($body, 'text/html');
         $this->mailer->send($message);

@@ -30,7 +30,6 @@ framework:
     assets: ~
     php_errors:
         log: true
-    templating: { engines: ['twig'] }
 
 # Twig Configuration
 twig:

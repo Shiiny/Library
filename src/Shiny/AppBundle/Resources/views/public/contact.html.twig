@@ -6,23 +6,23 @@
             <h1>Nous contacter</h1>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="card contact">
-                    <div class="card-body">
-                        <h3 class="card-title">Nous joindre</h3>
-                        <p class="card-text">Du lundi au vendredi de 09h à 17h</p>
-                        <ul class="card-list">
-                            <li class="list"><i class="fas fa-phone"></i> 01.53.19.07.48</li>
-                            <li class="list"><i class="fas fa-location-arrow"></i> 39 rue Henri Barbusse 75005 Paris</li>
-                            <li class="list"><a href="mailto:#" class="card-link"><i class="fas fa-at"></i> secretariatsup@collegesevigne.fr</a></li>
+            <div id="cs__contact" class="col-md-6">
+                <div class="cs__card">
+                    <div class="cs__card__body">
+                        <h3>Nous joindre</h3>
+                        <p>Du lundi au vendredi de 09h à 17h</p>
+                        <ul class="cs__card__list">
+                            <li><i class="fas fa-phone"></i> 01.53.19.07.48</li>
+                            <li><i class="fas fa-location-arrow"></i> 39 rue Henri Barbusse 75005 Paris</li>
+                            <li><a href="mailto:#" class="card-link"><i class="fas fa-at"></i> secretariatsup@collegesevigne.fr</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="card contact">
-                    <div class="card-body">
+            <div id="cs__form" class="col-md-6">
+                <div class="cs__card">
+                    <div class="cs__card__body">
                         <h3>Formulaire de contact</h3>
                         {{ form_start(formContact) }}
                         {{ form_rest(formContact) }}
@@ -32,9 +32,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="card contact">
-                    <div class="card-body">
+            <div id="cs__map" class="col-sm-12">
+                <div class="cs__card">
+                    <div class="cs__card__body">
                         <div id="map">
                         </div>
                     </div>
