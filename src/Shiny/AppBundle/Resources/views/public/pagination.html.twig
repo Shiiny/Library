@@ -2,7 +2,14 @@
     <ul class="pagination">
         {% if paging.page > 1 %}
             <li class="page-item">
-                <a href="{{ path(paging.route, {'search': app.request.get('search'), 'page': paging.page-1, 'author': app.request.get('author'), 'category': app.request.get('category') }) }}" class="page-link" aria-label="Previous">
+                <a href="{{ path(paging.route, {
+                    'param': app.request.get('param'),
+                    'search': app.request.get('search'),
+                    'page': paging.page-1,
+                    'id': app.request.get('id'),
+                    'author': app.request.get('author'),
+                    'category': app.request.get('category')
+                }) }}" class="page-link" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
@@ -12,7 +19,14 @@
         {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
         {% for p in range(max(paging.page-4, 1), min(paging.page+4, paging.nbPages)) %}
             <li {% if p == paging.page %}class="page-item active" {% else %}class="page-item" {% endif %}>
-                <a href="{{ path(paging.route, {'search': app.request.get('search'), 'page': p, 'author': app.request.get('author'), 'category': app.request.get('category')}) }}" class="page-link">
+                <a href="{{ path(paging.route, {
+                    'param': app.request.get('param'),
+                    'search': app.request.get('search'),
+                    'page': p,
+                    'id': app.request.get('id'),
+                    'author': app.request.get('author'),
+                    'category': app.request.get('category')
+                }) }}" class="page-link">
                     {{ p }}
                 </a>
             </li>
@@ -20,7 +34,14 @@
 
         {% if paging.page < paging.nbPages %}
             <li class="page-item">
-                <a href="{{ path(paging.route, {'search': app.request.get('search'), 'page': paging.page+1, 'author': app.request.get('author'), 'category': app.request.get('category')}) }}" class="page-link" aria-label="Next">
+                <a href="{{ path(paging.route, {
+                    'param': app.request.get('param'),
+                    'search': app.request.get('search'),
+                    'page': paging.page+1,
+                    'id': app.request.get('id'),
+                    'author': app.request.get('author'),
+                    'category': app.request.get('category')
+                }) }}" class="page-link" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>

@@ -43,8 +43,8 @@ class Carousel {
         })
 
         // Autoplay
-        if(options.autoplay) {
-            if(options.infinite) {
+        if(this.options.autoplay) {
+            if(this.options.infinite) {
                 this.options.loop = false
             }
             else {
@@ -54,19 +54,23 @@ class Carousel {
         }
       
         // Clonage des éléments pour défilement infinit
-        if(options.infinite) {
+        if(this.options.infinite) {
             this.options.loop = false
             this.offset = this.options.slidesVisible + this.options.slidesToScroll
 
             if(this.offset > children.length) {
+                this.options.infinite = false
+                this.options.loop = true
                 console.error("Il n'y a pas assez d'élément pour le carousel", element)
             }
-            this.items = [
-                ...this.items.slice(this.items.length - this.offset).map(item => item.cloneNode(true)),
-                ...this.items,
-                ...this.items.slice(0, this.offset).map(item => item.cloneNode(true)),
-            ]
-            this.gotoItem(this.offset, false)
+            else {
+                this.items = [
+                    ...this.items.slice(this.items.length - this.offset).map(item => item.cloneNode(true)),
+                    ...this.items,
+                    ...this.items.slice(0, this.offset).map(item => item.cloneNode(true)),
+                ]
+                this.gotoItem(this.offset, false)
+            }
         }
         this.items.forEach(item => this.container.appendChild(item))
 
@@ -91,7 +95,7 @@ class Carousel {
                 this.prev()
             }
         })
-        if(options.infinite) {
+        if(this.options.infinite) {
             this.container.addEventListener('transitionend', this.resetInfinite.bind(this))
         }
     }
@@ -158,7 +162,6 @@ class Carousel {
         })
 
     }
-
 
     next() {
         if(this.slidesToScroll > this.slidesVisible) {
@@ -265,8 +268,8 @@ class Carousel {
 new Carousel(document.querySelector('#carousel1'), {
     slidesToScroll: 3,
     slidesVisible: 3,
-    autoplay:true,
-    //infinite: true,
+    autoplay: true,
+    infinite: true,
     pagination: true,
     navigation: true,
 })
